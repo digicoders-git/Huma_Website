@@ -1,0 +1,259 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-primary: #9d2626;
+  --color-secondary: #e9e5dc;
+  --color-accent: #7a1a1a;
+}
+
+:root {
+  font-family: 'Poppins', 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #1a202c;
+  font-size: 16px;
+}
+
+@layer utilities {
+  .bg-primary-gradient {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #7a1a1a 100%);
+  }
+
+  @keyframes slideZoom {
+    0% {
+      transform: scale(1) translateZ(0);
+    }
+
+    100% {
+      transform: scale(1.08) translateZ(0);
+    }
+  }
+
+  .swiper-slide-active .animate-optimized-zoom {
+    animation: slideZoom 10s ease-out forwards;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  @keyframes textReveal {
+    0% {
+      transform: translateY(60px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .swiper-slide-active .animate-text-reveal {
+    animation: textReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* --- Silent Google Translate Fixes --- */
+  .goog-te-banner-frame.skiptranslate,
+  .goog-te-gadget-icon,
+  #goog-gt-tt,
+  .goog-te-balloon-frame,
+  .goog-te-menu-value span:nth-child(2),
+  iframe[id=":1.container"],
+  .goog-tooltip,
+  .goog-tooltip:hover {
+    display: none !important;
+  }
+
+  body {
+    top: 0 !important;
+    position: static !important;
+  }
+
+  /* Prevent Google from wrapping and breaking design with weird highlights */
+  font {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    display: inline !important;
+    vertical-align: inherit !important;
+    color: inherit !important;
+    font-size: inherit !important;
+  }
+
+  .goog-text-highlight {
+    background: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* RTL Global Fixes */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .ltr-only {
+  display: none !important;
+}
+
+[dir="ltr"] .rtl-only {
+  display: none !important;
+}
+
+/* Ensure images don't flip unless requested */
+
+
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* Smooth zoom transition */
+html {
+  transition: font-size 0.2s ease-out;
+}
+
+/* Fix for Google Translate top banner */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+#google_translate_element {
+  display: none !important;
+}
+
+.skiptranslate {
+  display: none !important;
+}
+
+.goog-te-spinner-pos {
+  display: none !important;
+}
+
+/* Text selection color fix */
+::selection {
+  background: #9d2626;
+  color: #e9e5dc;
+}
+
+/* Firefox support */
+::-moz-selection {
+  background: #9d2626;
+  color: #e9e5dc;
+}
+
+/* --- Blog Content Fixes (Jodit Styles) --- */
+.blog-content-wrapper {
+  color: #334155;
+  line-height: 1.3;
+  font-size: 1.05rem;
+}
+
+.blog-content-wrapper p {
+  margin-bottom: 0.6rem !important;
+}
+
+.blog-content-wrapper p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.blog-content-wrapper strong,
+.blog-content-wrapper b {
+  font-weight: 700 !important;
+  color: #1e293b !important;
+}
+
+.blog-content-wrapper h1,
+.blog-content-wrapper h2,
+.blog-content-wrapper h3,
+.blog-content-wrapper h4,
+.blog-content-wrapper h5,
+.blog-content-wrapper h6 {
+  color: #9d2626 !important;
+  font-weight: 700 !important;
+  margin-top: 1.2rem !important;
+  margin-bottom: 0.6rem !important;
+  font-style: normal !important;
+  text-transform: none !important;
+}
+
+.blog-content-wrapper ul {
+  list-style-type: disc !important;
+  padding-left: 1.5rem !important;
+  margin-bottom: 0.6rem !important;
+}
+
+.blog-content-wrapper ol {
+  list-style-type: decimal !important;
+  padding-left: 1.5rem !important;
+  margin-bottom: 0.6rem !important;
+}
+
+.blog-content-wrapper li {
+  margin-bottom: 0.2rem !important;
+}
+
+.blog-content-wrapper li p {
+  margin-bottom: 0 !important;
+  display: inline;
+}
+
+.blog-content-wrapper a {
+  color: #9d2626 !important;
+  text-decoration: underline !important;
+  transition: color 0.2s;
+}
+
+.blog-content-wrapper a:hover {
+  color: #7a1a1a !important;
+}
+
+.blog-content-wrapper img {
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+/* Table styling fix */
+.blog-content-wrapper table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+  font-size: 0.95rem;
+}
+
+.blog-content-wrapper table th,
+.blog-content-wrapper table td {
+  border: 1px solid #e2e8f0 !important;
+  padding: 12px 15px !important;
+  text-align: left !important;
+}
+
+.blog-content-wrapper table th {
+  background-color: #f8fafc;
+  font-weight: 700;
+}
+
+/* Fix float issues for images */
+.blog-content-wrapper img[style*="float: left"],
+.blog-content-wrapper img[style*="float:left"] {
+  margin-right: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.blog-content-wrapper img[style*="float: right"],
+.blog-content-wrapper img[style*="float:right"] {
+  margin-left: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
