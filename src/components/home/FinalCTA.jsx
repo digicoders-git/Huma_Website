@@ -5,7 +5,7 @@ const FinalCTA = () => {
   return (
     <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="p-10 md:p-16 rounded bg-gradient-to-br from-primary to-accent text-white relative overflow-hidden shadow-2xl">
+        <div className="p-10 md:p-16 rounded bg-primary text-white relative overflow-hidden shadow-2xl">
           <div className="relative z-10 flex flex-col items-center text-center gap-8 max-w-4xl mx-auto">
             <div className="w-16 h-16 rounded-full bg-secondary text-white flex items-center justify-center shadow-xl animate-bounce">
               <PhoneCall size={24} />

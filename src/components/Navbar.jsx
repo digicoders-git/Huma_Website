@@ -98,38 +98,29 @@ const Navbar = () => {
   return (
     <>
       {/* 1. Announcement Ticker Bar */}
-      <div className="bg-primary text-white py-2 overflow-hidden relative z-110 font-['Poppins'] border-b border-white/10">
-        <div className="flex items-center">
+      <div className="bg-primary text-white overflow-hidden relative z-110 font-['Poppins'] border-b border-white/20 h-9 sm:h-10 flex items-center">
+        <div className="flex items-stretch h-full w-full">
           {/* Static Label */}
-          <div className="shrink-0 bg-secondary px-4 py-0.5 text-[11px] font-bold uppercase tracking-widest flex items-center gap-2 z-10">
-            <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
-            News
+          <div className="shrink-0 bg-secondary px-6 text-primary text-[11px] sm:text-[12px] font-black uppercase tracking-[0.2em] flex items-center gap-2.5 z-20 relative shadow-[10px_0_20px_rgba(0,0,0,0.15)]">
+            <span className="w-2 h-2 bg-primary rounded-full animate-pulse shadow-sm" />
+            <span className="relative pt-[0.5px]">News</span>
           </div>
-          {/* Scrolling Text */}
-          <div className="overflow-hidden flex-1">
-            <div className="flex whitespace-nowrap" style={{ animation: "tickerScroll 30s linear infinite" }}>
+          {/* Scrolling Text container */}
+          <div className="overflow-hidden flex-1 relative flex items-center">
+            {/* Subtle gradient overlay for better transition */}
+            <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-primary to-transparent z-10" />
+            
+            <div className="flex whitespace-nowrap items-center h-full" style={{ animation: "tickerScroll 35s linear infinite" }}>
               {[...Array(2)].map((_, i) => (
-                <span key={i} className="inline-flex items-center gap-10 px-10 text-[11px] font-semibold tracking-wide text-white/90">
-                  <span>🏥 <strong className="text-secondary">New OPD Block Inaugurated</strong> — Huma Neurology Center expands with a dedicated Neuro-Rehabilitation wing. Now accepting patients.</span>
-                  <span className="text-secondary">✦</span>
-                  <span>📢 <strong className="text-secondary">Announcement:</strong> Free Epilepsy Awareness Camp — Every 2nd Saturday of the month. Register at reception or call +91 xxxxxxxxxx.</span>
-                  <span className="text-secondary">✦</span>
-                  <span>💡 <strong className="text-secondary">Health Tip:</strong> High blood pressure is the #1 cause of stroke. Check your BP regularly and keep it below 120/80 mmHg.</span>
-                  <span className="text-secondary">✦</span>
-                  <span>🏥 <strong className="text-secondary">Hospital Update:</strong> Advanced Video-EEG Monitoring Lab now operational at Huma Neurology Center, Lucknow.</span>
-                  <span className="text-secondary">✦</span>
-                  <span>💡 <strong className="text-secondary">Health Tip:</strong> Sleep 7–8 hours daily — poor sleep increases stroke risk by 45% and worsens epilepsy control.</span>
-                  <span className="text-secondary">✦</span>
-                  <span>📢 <strong className="text-secondary">Announcement:</strong> Same-day neuro consultations now available — Walk in or call +91 xxxxxxxxxx to book your slot.</span>
-                  <span className="text-secondary">✦</span>
-                  <span>💡 <strong className="text-secondary">Health Tip:</strong> Migraine triggers include stress, irregular sleep & dehydration — track your triggers with a headache diary.</span>
-                  <span className="text-secondary">✦</span>
-                  <span>🏥 <strong className="text-secondary">Hospital Update:</strong> 24/7 Stroke Emergency Unit active — IV Thrombolysis available round the clock at Huma Neurology Center.</span>
-                  <span className="text-secondary">✦</span>
-                  <span>💡 <strong className="text-secondary">Health Tip:</strong> Early Parkinson's signs — resting tremor, small handwriting & loss of smell. Consult a neurologist early for best outcomes.</span>
-                  <span className="text-secondary">✦</span>
-                  <span>📢 <strong className="text-secondary">Announcement:</strong> Memory & Dementia Clinic — Every Monday & Thursday. Early Alzheimer's screening now available.</span>
-                  <span className="text-secondary">✦</span>
+                <span key={i} className="inline-flex items-center gap-12 px-8 text-[11px] sm:text-[12px] font-medium tracking-wide text-white/95">
+                  <span className="flex items-center gap-2">🏥 <strong className="text-secondary font-bold">New OPD Block Inaugurated</strong> — Huma Neurology Center expands with a dedicated Neuro-Rehabilitation wing.</span>
+                  <span className="text-secondary opacity-50">✦</span>
+                  <span className="flex items-center gap-2">📢 <strong className="text-secondary font-bold">News:</strong> Free Epilepsy Awareness Camp — Every 2nd Saturday of the month.</span>
+                  <span className="text-secondary opacity-50">✦</span>
+                  <span className="flex items-center gap-2">💡 <strong className="text-secondary font-bold">Health Tip:</strong> High blood pressure is the #1 cause of stroke. Check your BP regularly.</span>
+                  <span className="text-secondary opacity-50">✦</span>
+                  <span className="flex items-center gap-2">🏥 <strong className="text-secondary font-bold">Hospital Update:</strong> Advanced Video-EEG Monitoring Lab now operational.</span>
+                  <span className="text-secondary opacity-50">✦</span>
                 </span>
               ))}
             </div>

@@ -57,10 +57,10 @@ const Appointment = () => {
 
   return (
     <div className="bg-white">
-      <PageHero slides={bannerSlides} />
+      {/* <PageHero slides={bannerSlides} /> */}
 
       {/* Steps */}
-      <section className="py-8 bg-primary">
+      {/* <section className="py-8 bg-primary">
         <div className="max-w-5xl mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
@@ -76,7 +76,7 @@ const Appointment = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Main Form */}
       <section id="appointment-form" className="py-12 md:py-16 px-4 md:px-8 bg-slate-50">

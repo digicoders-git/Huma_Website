@@ -43,7 +43,7 @@ const Contact = () => {
 
   return (
     <div className="bg-white">
-      <PageHero slides={bannerSlides} />
+      {/* <PageHero slides={bannerSlides} /> */}
 
       {/* 1. Intro Section */}
       <motion.section

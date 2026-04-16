@@ -21,7 +21,7 @@ const Home = () => {
       <AboutSnapshot />
       <WhyIndia />
       <Specialities />
-      <Services />
+      {/* <Services /> */}
       {/* <Journey /> */}
       <USP />
       {/* <Founder /> */}

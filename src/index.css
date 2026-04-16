@@ -3,8 +3,8 @@
 
 @theme {
   --color-primary: #9d2626;
-  --color-secondary: #e9e5dc;
-  --color-accent: #7a1a1a;
+  --color-secondary: #c8960c;
+  --color-accent: #a07a0a;
 }
 
 :root {
@@ -145,13 +145,13 @@ body {
 /* Text selection color fix */
 ::selection {
   background: #9d2626;
-  color: #e9e5dc;
+  color: #ffffff;
 }
 
 /* Firefox support */
 ::-moz-selection {
   background: #9d2626;
-  color: #e9e5dc;
+  color: #ffffff;
 }
 
 /* --- Blog Content Fixes (Jodit Styles) --- */

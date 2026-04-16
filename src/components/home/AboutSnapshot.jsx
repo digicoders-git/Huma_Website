@@ -34,7 +34,7 @@ const AboutSnapshot = () => {
             className="lg:w-1/2 space-y-6"
           >
             <div className="space-y-3">
-              <h4 className="text-secondary font-bold text-[12px] uppercase tracking-[0.25em] border-l-4 border-secondary pl-4">
+              <h4 className="text-[#9d2626] font-bold text-[12px] uppercase tracking-[0.25em] border-l-4 border-[#9d2626] pl-4">
                 About Our Center
               </h4>
               <h2 className="text-2xl md:text-4xl font-bold text-primary leading-tight tracking-tight">

@@ -37,7 +37,7 @@ const Testimonials = () => {
     <section className="py-12 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-10 space-y-2">
-          <h4 className="text-secondary font-bold text-[12px] uppercase tracking-[0.2em]">
+          <h4 className="text-[#9d2626] font-bold text-[12px] uppercase tracking-[0.2em]">
             Patient Feedback
           </h4>
           <h2 className="text-2xl md:text-3xl font-bold text-primary">

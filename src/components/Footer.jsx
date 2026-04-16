@@ -66,7 +66,7 @@ const Footer = () => {
           className="lg:col-span-1 space-y-7"
         >
           {/* Premium Animated Logo Section */}
-          <div className="relative inline-flex items-center justify-center p-4">
+          <div className="relative inline-flex items-center justify-center">
             {/* 1. Pulsating Glow Background */}
             <motion.div
               animate={{
@@ -78,12 +78,12 @@ const Footer = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute w-32 h-32 bg-secondary/20 rounded-full blur-2xl"
+              className="absolute w-40 h-40 bg-secondary/20 rounded-full blur-2xl"
             />
 
             {/* 2. Outer Rotating Ring (Slow) */}
             <div
-              className="absolute w-[140px] h-[140px] rounded-full border border-white/10"
+              className="absolute w-[110px] h-[110px] rounded-full border border-white/10"
               style={{
                 animation: "spinCircle 15s linear infinite",
               }}
@@ -93,7 +93,7 @@ const Footer = () => {
 
             {/* 3. Middle Dashed Ring (Fast) */}
             <div
-              className="absolute w-[120px] h-[120px] rounded-full border-2 border-dashed border-secondary/40"
+              className="absolute w-[100px] h-[100px] rounded-full border-2 border-dashed border-secondary/40"
               style={{
                 animation: "spinCircle 8s linear infinite reverse",
               }}
@@ -113,11 +113,11 @@ const Footer = () => {
             />
 
             {/* 5. The Logo */}
-            <div className="relative z-10 bg-white p-2 rounded-full shadow-2xl">
+            <div className="relative z-10">
               <img
                 src={mainLogo}
                 alt="Huma Neurology Center"
-                className="h-16 w-16 object-contain"
+                className="h-28 w-28 object-contain "
               />
             </div>
           </div>
@@ -125,12 +125,12 @@ const Footer = () => {
             Lucknow's premier neurological care center — expert diagnosis &
             compassionate treatment for brain, spine & nervous system disorders.
           </p>
-          {/* <div className="flex items-center gap-3 bg-secondary/10 px-4 py-3 rounded-xl border border-secondary/20 hover:bg-secondary/15 hover:border-secondary/30 transition-all duration-300">
+          <div className="flex items-center gap-3 bg-secondary/10 px-4 py-3 rounded-xl border border-secondary/20 hover:bg-secondary/15 hover:border-secondary/30 transition-all duration-300">
             <ShieldCheck size={18} className="text-secondary" />
             <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-secondary">
               NABH Partner Portal
             </span>
-          </div> */}
+          </div>
         </motion.div>
 
         {/* Column 2: Quick Links */}
@@ -143,54 +143,31 @@ const Footer = () => {
             <div className="absolute bottom-0 left-0 w-8 h-1 bg-white/30 rounded-full"></div>
           </div>
           <ul className="space-y-4 text-white/80 text-base font-medium">
-            <li>
-              <Link
-                to="/hospitals"
-                className="hover:text-secondary transition-all duration-300 inline-flex items-center gap-3 hover:gap-4 group"
-              >
-                <ExternalLink
-                  size={14}
-                  className="text-secondary group-hover:rotate-45 transition-transform duration-300"
-                />
-                <span>Find Hospitals</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/journey"
-                className="hover:text-secondary transition-all duration-300 inline-flex items-center gap-3 hover:gap-4 group"
-              >
-                <ExternalLink
-                  size={14}
-                  className="text-secondary group-hover:rotate-45 transition-transform duration-300"
-                />
-                <span>Medical Visa Info</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/services"
-                className="hover:text-secondary transition-all duration-300 inline-flex items-center gap-3 hover:gap-4 group"
-              >
-                <ExternalLink
-                  size={14}
-                  className="text-secondary group-hover:rotate-45 transition-transform duration-300"
-                />
-                <span>Our Services</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/gallery"
-                className="hover:text-secondary transition-all duration-300 inline-flex items-center gap-3 hover:gap-4 group"
-              >
-                <ExternalLink
-                  size={14}
-                  className="text-secondary group-hover:rotate-45 transition-transform duration-300"
-                />
-                <span>Hospital Gallery</span>
-              </Link>
-            </li>
+            {[
+              { label: "Home", path: "/" },
+              { label: "About Us", path: "/about" },
+              { label: "Specialities", path: "/specialities" },
+              { label: "Doctors", path: "/doctors" },
+              { label: "Patient Journey", path: "/journey" },
+              { label: "Our Services", path: "/services" },
+              { label: "Medical Departments", path: "/departments" },
+              { label: "Emergency", path: "/emergency" },
+              { label: "Knowledge Blog", path: "/blogs" },
+              { label: "Gallery", path: "/gallery" },
+            ].map((link, i) => (
+              <li key={i}>
+                <Link
+                  to={link.path}
+                  className="hover:text-secondary transition-all duration-300 inline-flex items-center gap-3 hover:gap-4 group"
+                >
+                  <ExternalLink
+                    size={14}
+                    className="text-secondary group-hover:rotate-45 transition-transform duration-300"
+                  />
+                  <span>{link.label}</span>
+                </Link>
+              </li>
+            ))}
           </ul>
         </motion.div>
 
@@ -315,14 +292,22 @@ const Footer = () => {
       >
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-px bg-linear-to-r from-transparent via-secondary to-transparent"></div>
         <p className="text-white/80 text-sm font-medium tracking-[0.15em] text-center">
-          © 2026 Huma Neurology Center. || Created with ❤️ by <a href="https://digicoders.in/"><span className="underline text-black font-bold"> Team Digicoders </span></a>
+          © 2026 Huma Neurology Center. || Created with ❤️ by{" "}
+          <a
+            href="https://digicoders.in/"
+            target="_blank"
+            rel="noreferrer"
+            className="underline text-white font-bold hover:text-secondary transition-colors"
+          >
+            Team Digicoders
+          </a>
         </p>
       </motion.div>
 
       {/* Corporate Watermark */}
       <div className="absolute -bottom-20 -right-20 opacity-[0.03] pointer-events-none select-none">
         <h2 className="text-[18rem] font-bold leading-none tracking-tighter">
-          HE
+          HUMA
         </h2>
       </div>
       <style

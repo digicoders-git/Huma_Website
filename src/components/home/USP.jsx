@@ -35,7 +35,7 @@ const USP = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6 space-y-6">
             <div className="space-y-2">
-              <h4 className="text-secondary font-bold text-[12px] uppercase tracking-[0.2em] border-l-4 border-secondary pl-4">
+              <h4 className="text-[#9d2626] font-bold text-[12px] uppercase tracking-[0.2em] border-l-4 border-secondary pl-4">
                 Why Choose Huma Neurology Center
               </h4>
               <h2 className="text-2xl md:text-3xl font-bold text-primary leading-tight tracking-tight uppercase">

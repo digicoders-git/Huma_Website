@@ -24,7 +24,7 @@ const EmergencyContact = () => {
             24/7 Emergency Services
           </div>
           <h2 className="text-2xl md:text-4xl font-bold text-primary tracking-tight">
-            Neurological Emergency? <span className="text-secondary">We're Always Here.</span>
+            Neurological Emergency? <span className="text-[#9d2626">We're Always Here.</span>
           </h2>
           <p className="text-slate-500 font-medium max-w-xl mx-auto text-sm md:text-base">
             Stroke, seizure, or any neurological emergency — our team is available round the clock. Every second counts.
