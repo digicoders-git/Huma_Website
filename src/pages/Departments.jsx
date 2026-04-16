@@ -26,7 +26,7 @@ const departments = [
     about: "Our General Neurology department is the backbone of Huma Neurology Center. Led by senior DM/MD Neurologists, we evaluate and manage the full spectrum of neurological disorders with precision and compassion.",
     conditions: ["Stroke & TIA", "Epilepsy & Seizures", "Headache & Migraine", "Dizziness & Vertigo", "Neuropathy", "Encephalitis & Meningitis"],
     services: ["Comprehensive Neuro OPD", "Inpatient Neurology Care", "Telemedicine Consultation", "Second Opinion Services"],
-    head: "Dr. Huma Naz",
+    head: "Dr. Mo. Shakil",
     qualification: "MBBS, MD, DM Neurology",
   },
   {
@@ -65,7 +65,7 @@ const departments = [
     about: "Our Movement Disorders Clinic provides expert evaluation and management of Parkinson's disease and all related movement disorders. We offer the latest pharmacological treatments and evaluate patients for Deep Brain Stimulation (DBS) surgery.",
     conditions: ["Parkinson's Disease", "Essential Tremor", "Dystonia", "Huntington's Disease", "Ataxia", "Restless Legs Syndrome"],
     services: ["Parkinson's OPD", "DBS Evaluation", "Botox for Dystonia & Tremor", "Gait Analysis", "Parkinson's Rehabilitation"],
-    head: "Dr. Huma Naz",
+    head: "Dr. Mo. Shakil",
     qualification: "MBBS, MD, DM Neurology",
   },
   {

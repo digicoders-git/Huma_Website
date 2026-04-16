@@ -50,11 +50,11 @@ const EmergencyContact = () => {
                 <h3 className="text-2xl font-black text-white leading-tight">Stroke & Neuro Emergency</h3>
               </div>
               <a
-                href="tel:+91xxxxxxxxxx"
+                href="tel:+917849893727"
                 className="flex items-center gap-3 bg-secondary hover:bg-white hover:text-primary text-white font-black text-xl py-4 px-6 rounded-xl transition-all duration-300 shadow-lg group/btn"
               >
                 <Phone size={22} className="shrink-0" />
-                +91 xxxxxxxxxx
+                +91 7849893727
               </a>
               <div className="flex items-center gap-2 text-white/50 text-xs font-medium">
                 <Clock size={14} className="text-secondary" />
@@ -68,7 +68,7 @@ const EmergencyContact = () => {
 
             {/* WhatsApp */}
             <a
-              href="https://wa.me/91xxxxxxxxxx"
+              href="https://wa.me/917849893727"
               target="_blank"
               rel="noreferrer"
               className="group bg-white border border-slate-100 rounded-2xl p-6 hover:border-green-400 hover:shadow-lg transition-all duration-300 flex flex-col gap-4"

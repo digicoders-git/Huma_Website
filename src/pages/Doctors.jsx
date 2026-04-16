@@ -16,7 +16,7 @@ const bannerSlides = [
 const doctors = [
   {
     _id: "1",
-    name: "Dr. Huma Naz",
+    name: "Dr. Mo. Shakil",
     speciality: "Neurology",
     qualification: "MBBS, MD, DM Neurology",
     experience: 15,

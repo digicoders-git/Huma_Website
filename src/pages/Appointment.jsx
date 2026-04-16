@@ -27,7 +27,7 @@ const departments = [
 ];
 
 const doctors = [
-  "Dr. Huma Naz — Senior Neurologist",
+  "Dr. Mo. Shakil — Senior Neurologist",
   "Dr. Arjun Mehta — Neurosurgeon",
   "Dr. Priya Sharma — Consultant Neurologist",
   "Dr. Rakesh Verma — Neuro-Rehabilitation",
@@ -101,9 +101,9 @@ const Appointment = () => {
             {/* Contact Info */}
             <div className="space-y-3">
               {[
-                { icon: <Phone size={16} />, label: "Call Us", val: "+91 xxxxxxxxxx", href: "tel:+91xxxxxxxxxx" },
-                { icon: <Mail size={16} />, label: "Email", val: "contactus@healingescapeglobal.com", href: "mailto:contactus@healingescapeglobal.com" },
-                { icon: <MapPin size={16} />, label: "Location", val: "Lucknow, Uttar Pradesh — 226010", href: "#" },
+                { icon: <Phone size={16} />, label: "Call Us", val: "+91 7849893727", href: "tel:+917849893727" },
+                { icon: <Mail size={16} />, label: "Email", val: "hamdshakil13@gmail.com", href: "mailto:hamdshakil13@gmail.com" },
+                { icon: <MapPin size={16} />, label: "Location", val: "KGMC ,Lucknow, Uttar Pradesh — 226010", href: "#" },
                 { icon: <Clock size={16} />, label: "OPD Hours", val: "Mon – Sat: 9:00 AM – 6:00 PM", href: "#" },
               ].map((item, i) => (
                 <a key={i} href={item.href} className="flex items-center gap-3 p-3 bg-white border border-slate-100 rounded-xl hover:border-secondary/40 transition-all group">

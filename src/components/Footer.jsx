@@ -224,7 +224,7 @@ const Footer = () => {
                 className="text-secondary shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300"
               />
               <span className="leading-relaxed">
-                Lucknow, Uttar Pradesh, India - 226010
+               KGMC ,Lucknow, Uttar Pradesh, India
               </span>
             </li>
             <li className="flex items-center gap-4 text-white/90 text-base group hover:text-secondary transition-colors duration-300">
@@ -232,7 +232,7 @@ const Footer = () => {
                 size={18}
                 className="text-secondary shrink-0 group-hover:scale-110 transition-transform duration-300"
               />
-              <a href="tel:+91 xxxxxxxxxx">+91 xxxxxxxxxx</a>
+              <a href="tel:+91 7849893727">+91 7849893727</a>
             </li>
             <li className="flex items-center gap-4 text-white/90 text-base group hover:text-secondary transition-colors duration-300">
               <Mail
@@ -240,7 +240,7 @@ const Footer = () => {
                 className="text-secondary shrink-0 group-hover:scale-110 transition-transform duration-300"
               />
               <a href="mailto:contactus@humaneurogy.com">
-                contactus@humaneurology.com
+                hamdshakil13@gmail.com
               </a>
             </li>
           </ul>

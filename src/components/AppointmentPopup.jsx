@@ -80,9 +80,9 @@ const AppointmentPopup = () => {
                     ))}
                   </div>
 
-                  <a href="tel:+91xxxxxxxxxx"
+                  <a href="tel:+917849893727"
                     className="flex items-center gap-3 bg-secondary hover:bg-white hover:text-primary text-white font-bold py-3 px-5 rounded-xl transition-all text-sm">
-                    <Phone size={16} /> +91 xxxxxxxxxx
+                    <Phone size={16} /> +91 7849893727
                   </a>
                 </div>
 

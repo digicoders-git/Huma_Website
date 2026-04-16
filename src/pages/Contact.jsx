@@ -87,17 +87,17 @@ const Contact = () => {
                 {
                   icon: <Phone size={24} />,
                   label: "Call Us",
-                  value: "+91 xxxxxxxxxx",
+                  value: "+91 7849893727",
                 },
                 {
                   icon: <Mail size={24} />,
                   label: "Email Us",
-                  value: "contactus@humaneurology.com",
+                  value: "hamdshakil13@gmail.com",
                 },
                 {
                   icon: <MapPin size={24} />,
                   label: "Visit Us",
-                  value: "Lucknow, India",
+                  value: "KGMC Lucknow, India",
                 },
                 {
                   icon: <Clock size={24} />,
@@ -152,17 +152,17 @@ const Contact = () => {
                       {
                         icon: <MapPin size={20} />,
                         label: "Location",
-                        val: "Lucknow, Uttar Pradesh, India",
+                        val: "KGMC Lucknow, Uttar Pradesh, India",
                       },
                       {
                         icon: <Phone size={20} />,
                         label: "Phone",
-                        val: "+91 xxxxxxxxxx",
+                        val: "+91 7849893727",
                       },
                       {
                         icon: <Mail size={20} />,
                         label: "Email",
-                        val: "contactus@humaneurology.com",
+                        val: "hamdshakil13@gmail.com",
                       },
                       {
                         icon: <Clock size={20} />,

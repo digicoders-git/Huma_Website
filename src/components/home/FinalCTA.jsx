@@ -28,7 +28,7 @@ const FinalCTA = () => {
                 <CheckCircle size={18} /> Book Appointment
               </Link>
               <a
-                href="https://wa.me/91xxxxxxxxxx"
+                href="https://wa.me/917849893727"
                 target="_blank"
                 rel="noreferrer"
                 className="w-full lg:w-auto bg-white/10 backdrop-blur-md hover:bg-white hover:text-primary text-white font-bold py-4 px-10 rounded border border-white/20 transition-all duration-300 uppercase tracking-[0.15em] text-[13px] flex items-center justify-center gap-2"

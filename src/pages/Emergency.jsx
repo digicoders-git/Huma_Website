@@ -10,15 +10,15 @@ const bannerSlides = [
     title: "Emergency & Ambulance Services",
     subtitle: "24/7 Neurological Emergency Response — Every Second Counts in Stroke & Seizure Care",
     buttonLabel: "Call Emergency Now",
-    buttonLink: "tel:+91xxxxxxxxxx",
+    buttonLink: "tel:+917849893727",
   },
 ];
 
 const emergencyNumbers = [
-  { label: "Neuro Emergency Helpline", number: "+91 xxxxxxxxxx", desc: "24/7 stroke & seizure emergency", color: "bg-red-600", icon: <Phone size={22} /> },
-  { label: "Ambulance Service", number: "+91 xxxxxxxxxx", desc: "Equipped neuro ambulance dispatch", color: "bg-orange-600", icon: <Ambulance size={22} /> },
-  { label: "WhatsApp Emergency", number: "+91 xxxxxxxxxx", desc: "Send reports & get instant guidance", color: "bg-green-600", icon: <Phone size={22} /> },
-  { label: "OPD Appointment", number: "+91 xxxxxxxxxx", desc: "Mon – Sat: 9:00 AM – 6:00 PM", color: "bg-primary", icon: <Clock size={22} /> },
+  { label: "Neuro Emergency Helpline", number: "+91 7849893727", desc: "24/7 stroke & seizure emergency", color: "bg-red-600", icon: <Phone size={22} /> },
+  { label: "Ambulance Service", number: "+91 7849893727", desc: "Equipped neuro ambulance dispatch", color: "bg-orange-600", icon: <Ambulance size={22} /> },
+  { label: "WhatsApp Emergency", number: "+91 7849893727", desc: "Send reports & get instant guidance", color: "bg-green-600", icon: <Phone size={22} /> },
+  { label: "OPD Appointment", number: "+91 7849893727", desc: "Mon – Sat: 9:00 AM – 6:00 PM", color: "bg-primary", icon: <Clock size={22} /> },
 ];
 
 const warningSignsStroke = [
@@ -40,7 +40,7 @@ const warningSignsSeizure = [
 ];
 
 const dosDonts = [
-  { type: "do", text: "Call emergency immediately — +91 xxxxxxxxxx" },
+  { type: "do", text: "Call emergency immediately — +91 7849893727" },
   { type: "do", text: "Note the exact time symptoms started" },
   { type: "do", text: "Keep the patient calm and lying down" },
   { type: "do", text: "Loosen tight clothing around neck" },
@@ -121,7 +121,7 @@ const Emergency = () => {
                   </div>
                 ))}
               </div>
-              <a href="tel:+91xxxxxxxxxx" className="flex items-center justify-center gap-2 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl text-sm uppercase tracking-widest transition-all">
+              <a href="tel:+917849893727" className="flex items-center justify-center gap-2 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl text-sm uppercase tracking-widest transition-all">
                 <Phone size={16} /> Call Stroke Emergency
               </a>
             </motion.div>
@@ -145,7 +145,7 @@ const Emergency = () => {
                   </div>
                 ))}
               </div>
-              <a href="tel:+91xxxxxxxxxx" className="flex items-center justify-center gap-2 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl text-sm uppercase tracking-widest transition-all">
+              <a href="tel:+917849893727" className="flex items-center justify-center gap-2 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl text-sm uppercase tracking-widest transition-all">
                 <Phone size={16} /> Call Seizure Emergency
               </a>
             </motion.div>
@@ -178,9 +178,9 @@ const Emergency = () => {
             ))}
           </div>
           <div className="text-center pt-4">
-            <a href="tel:+91xxxxxxxxxx"
+            <a href="tel:+917849893727"
               className="inline-flex items-center gap-3 bg-secondary hover:bg-white hover:text-primary text-white font-black py-4 px-10 rounded-2xl text-sm uppercase tracking-widest transition-all shadow-2xl">
-              <Ambulance size={20} /> Dispatch Ambulance Now — +91 xxxxxxxxxx
+              <Ambulance size={20} /> Dispatch Ambulance Now — +91 7849893727
             </a>
           </div>
         </div>
@@ -224,7 +224,7 @@ const Emergency = () => {
               {[
                 { icon: <MapPin size={16} />, text: "Lucknow, Uttar Pradesh, India — 226010" },
                 { icon: <Clock size={16} />, text: "OPD: Mon – Sat, 9:00 AM – 6:00 PM" },
-                { icon: <Phone size={16} />, text: "Emergency: 24/7 — +91 xxxxxxxxxx" },
+                { icon: <Phone size={16} />, text: "Emergency: 24/7 — +91 7849893727" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 p-3 bg-white border border-slate-100 rounded-xl">
                   <div className="w-8 h-8 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary shrink-0">{item.icon}</div>
@@ -233,7 +233,7 @@ const Emergency = () => {
               ))}
             </div>
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <a href="tel:+91xxxxxxxxxx" className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-xs uppercase tracking-widest transition-all">
+              <a href="tel:+917849893727" className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-xs uppercase tracking-widest transition-all">
                 <Phone size={14} /> Call Emergency
               </a>
               <Link to="/appointment" className="flex items-center justify-center gap-2 bg-primary hover:bg-secondary text-white font-bold py-3 px-6 rounded-xl text-xs uppercase tracking-widest transition-all">

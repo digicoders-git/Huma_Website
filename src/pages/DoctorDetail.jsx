@@ -4,14 +4,14 @@ import { GraduationCap, MapPin, Users, Activity, CheckCircle2 } from "lucide-rea
 const doctors = [
   {
     _id: "1",
-    name: "Dr. Huma Naz",
+    name: "Dr. Mo. Shakil",
     designation: "Senior Neurologist",
     speciality: "Neurology",
     qualification: "MBBS, MD, DM Neurology",
     experience: 15,
     city: "Lucknow",
     photo: "https://img.freepik.com/free-photo/female-doctor-hospital-with-stethoscope_23-2148827776.jpg",
-    about: "Dr. Huma Naz is a Senior Neurologist with 15+ years of expertise in stroke management, epilepsy, and movement disorders. Trained from premier medical institutions, she leads the neurology department at Huma Neurology Center with a patient-first approach.",
+    about: "Dr. Mo. Shakil is a Senior Neurologist with 15+ years of expertise in stroke management, epilepsy, and movement disorders. Trained from premier medical institutions, she leads the neurology department at Huma Neurology Center with a patient-first approach.",
     expertise: ["Stroke & Cerebrovascular Disease", "Epilepsy & Seizure Disorders", "Parkinson's Disease", "Headache & Migraine", "Multiple Sclerosis", "Neuro-Immunology"],
     procedures: ["IV Thrombolysis for Stroke", "Video EEG Monitoring", "Botox for Migraine", "Lumbar Puncture", "EMG/NCV Studies", "Cognitive Assessment"],
     whyChoose: ["15+ years of clinical experience in neurology", "Pioneer in stroke thrombolysis in Lucknow", "Compassionate patient-centered care", "Regular training at international neurology conferences"],

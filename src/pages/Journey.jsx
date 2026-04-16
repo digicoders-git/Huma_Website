@@ -519,7 +519,7 @@ const Journey = () => {
                 Start Enquiry Now
               </a>
               <a
-                href="https://wa.me/91xxxxxxxxxx"
+                href="https://wa.me/917849893727"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-white/5 hover:bg-white/10 text-white font-black py-4 md:py-6 px-8 md:px-12 rounded border border-white/10 transition-all duration-500 uppercase tracking-widest text-[11px] md:text-sm shadow-xl cursor-pointer"

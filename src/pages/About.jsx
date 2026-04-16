@@ -112,13 +112,13 @@ const About = () => {
                 <div className="w-48 h-48 md:w-52 md:h-52 rounded-full overflow-hidden border-4 border-white shadow-2xl">
                   <img
                     src="https://img.freepik.com/free-photo/female-doctor-hospital-with-stethoscope_23-2148827776.jpg"
-                    alt="Dr. Huma Naz"
+                    alt="Dr. Mo. Shakil"
                     className="w-full h-full object-cover"
                   />
                 </div>
               </div>
               <div className="text-center space-y-1">
-                <h3 className="text-xl font-black text-primary">Dr. Huma Naz</h3>
+                <h3 className="text-xl font-black text-primary">Dr. Mo. Shakil</h3>
                 <p className="text-secondary font-bold text-sm uppercase tracking-widest">Founder & Chief Neurologist</p>
                 <p className="text-slate-400 text-xs font-medium">MBBS, MD, DM Neurology</p>
                 <div className="flex items-center justify-center gap-2 mt-2 bg-primary/5 px-4 py-2 rounded-full border border-primary/10">
@@ -137,7 +137,7 @@ const About = () => {
               <div className="text-8xl font-black text-secondary/10 leading-none select-none text-right -mt-2">”</div>
               <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                  <p className="font-black text-primary text-lg italic">Dr. Huma Naz</p>
+                  <p className="font-black text-primary text-lg italic">Dr. Mo. Shakil</p>
                   <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">Founder & Chief Neurologist, Huma Neurology Center</p>
                 </div>
                 <div className="grid grid-cols-3 gap-3">

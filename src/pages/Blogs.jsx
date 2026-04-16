@@ -23,7 +23,7 @@ export const blogs = [
     introduction: "Stroke is a medical emergency where blood supply to part of the brain is suddenly cut off. Recognizing the warning signs early and acting fast can mean the difference between full recovery and permanent disability.",
     content: `<p>A stroke occurs when a blood vessel in the brain is blocked (ischemic stroke) or bursts (hemorrhagic stroke). The brain cells begin to die within minutes of losing blood supply.</p><h3>The FAST Signs of Stroke</h3><ul><li><strong>F - Face drooping:</strong> One side of the face droops or is numb</li><li><strong>A - Arm weakness:</strong> One arm is weak or numb</li><li><strong>S - Speech difficulty:</strong> Slurred or strange speech</li><li><strong>T - Time to call emergency:</strong> Call immediately if you see any signs</li></ul><h3>Treatment Options</h3><p>IV Thrombolysis (clot-busting drug) must be given within 4.5 hours of symptom onset. Mechanical Thrombectomy can be performed up to 24 hours in eligible patients.</p><h3>Recovery</h3><p>With early treatment and dedicated neuro-rehabilitation, many stroke patients regain significant function. The brain has remarkable plasticity and can rewire itself with proper therapy.</p>`,
     image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800",
-    author: "Dr. Huma Naz",
+    author: "Dr. Mo. Shakil",
   },
   {
     _id: "2",
@@ -45,7 +45,7 @@ export const blogs = [
     introduction: "Parkinson's disease is a progressive neurological disorder affecting movement. While there is no cure, early diagnosis and treatment can significantly improve quality of life.",
     content: `<p>Parkinson's disease occurs when dopamine-producing neurons in the brain gradually break down. It affects about 1% of people over 60 years of age.</p><h3>Early Warning Signs</h3><ul><li>Resting tremor (shaking at rest)</li><li>Slowness of movement (bradykinesia)</li><li>Muscle stiffness and rigidity</li><li>Loss of smell</li><li>Sleep disturbances</li><li>Small handwriting (micrographia)</li></ul><h3>Treatment Advances</h3><p>Levodopa remains the gold standard medication. Deep Brain Stimulation (DBS) surgery offers remarkable improvement for advanced cases. Physiotherapy and speech therapy are essential components of care.</p>`,
     image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&q=80&w=800",
-    author: "Dr. Huma Naz",
+    author: "Dr. Mo. Shakil",
   },
   {
     _id: "4",
@@ -111,7 +111,7 @@ export const blogs = [
     introduction: "Your brain is the most complex organ in your body. Taking care of it through lifestyle choices can significantly reduce the risk of neurological diseases and cognitive decline.",
     content: `<p>Neurological health is not just about treating disease — it is about prevention and maintaining optimal brain function throughout life.</p><h3>10 Brain Health Tips</h3><ol><li><strong>Exercise regularly:</strong> 150 minutes of moderate aerobic exercise per week reduces stroke risk by 27%</li><li><strong>Control blood pressure:</strong> Hypertension is the #1 modifiable risk factor for stroke</li><li><strong>Manage diabetes:</strong> High blood sugar damages nerves and blood vessels</li><li><strong>Sleep 7-8 hours:</strong> Sleep is when the brain clears toxic waste products</li><li><strong>Stay mentally active:</strong> Reading, puzzles, and learning new skills build cognitive reserve</li><li><strong>Eat a Mediterranean diet:</strong> Rich in omega-3s, antioxidants, and healthy fats</li><li><strong>Quit smoking:</strong> Smoking doubles the risk of stroke</li><li><strong>Limit alcohol:</strong> Excessive alcohol damages brain cells and nerves</li><li><strong>Manage stress:</strong> Chronic stress accelerates brain aging</li><li><strong>Stay socially connected:</strong> Social engagement protects against dementia</li></ol>`,
     image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800",
-    author: "Dr. Huma Naz",
+    author: "Dr. Mo. Shakil",
   },
 ];
 
