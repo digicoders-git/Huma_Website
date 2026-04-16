@@ -62,7 +62,7 @@ export const blogData = [
     content: `
       Medical costs in India are generally all-inclusive packages. They cover the surgeon's fee, hospital stay, implants, medicines, and consumables. 
       However, factors like room category (Single, Deluxe, Suite), patient's co-morbidities, and length of stay can impact the final bill. 
-      At Healing Escape, we provide transparent cost estimates before you travel so there are no surprises.
+      At Huma Neurology Center, we provide transparent cost estimates so there are no surprises.
     `,
     whyThisMatters: "Helps you avoid hidden costs and budget accurately for your medical travel.",
     relatedIds: [1, 2]

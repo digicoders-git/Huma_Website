@@ -6,11 +6,11 @@ export const videoData = [
     thumbnail: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800",
     videoUrl: "https://www.youtube.com/embed/placeholder1",
     duration: "12:45",
-    description: "This video shows a complete patient journey from the first contact with Healing Escape to successful heart surgery and recovery in Delhi NCR. The purpose of this video is to help patients and their families better understand the treatment process and the facilities available in India through Healing Escape.",
+    description: "This video shows a complete patient journey from the first contact with Huma Neurology Center to successful heart surgery and recovery in Delhi NCR. The purpose of this video is to help patients and their families better understand the treatment process and the facilities available in India through Huma Neurology Center.",
     whatYouWillLearn: [
       "Overview of the cardiac treatment process",
       "What patients should expect before coming to India",
-      "How Healing Escape supports patients during their stay",
+      "How Huma Neurology Center supports patients during their stay",
       "Hospital facilities and medical standards",
       "Important tips and guidance for patients"
     ]

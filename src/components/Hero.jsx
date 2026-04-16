@@ -31,7 +31,7 @@ const Hero = () => {
             <div className="inline-flex items-center gap-2 bg-primary/10 px-6 py-2 rounded-full border border-primary/20">
               <Globe size={16} className="text-primary animate-pulse" />
               <span className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">
-                Global Medical Tourism Platform
+                Premier Neurology Care Centre
               </span>
             </div>
 
@@ -41,7 +41,7 @@ const Hero = () => {
             </h1>
 
             <p className="text-xl md:text-2xl text-slate-700 font-bold max-w-xl leading-relaxed">
-              Healing Escape bridges the gap with world-class facilities & zero
+              Huma Neurology Center bridges the gap with world-class facilities & zero
               compromise care.
             </p>
           </div>

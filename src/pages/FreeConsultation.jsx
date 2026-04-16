@@ -617,7 +617,7 @@ const FreeConsultation = () => {
         </div>
       </motion.section>
 
-      {/* 6. Why Healing Escape */}
+      {/* 6. Why Huma Neurology Center */}
       <motion.section
         variants={staggerContainer(0.2, 0.1)}
         initial="hidden"

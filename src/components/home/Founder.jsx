@@ -54,7 +54,7 @@ const Founder = () => {
 
               <div className="space-y-4">
                 <p className="text-lg md:text-xl text-slate-700 font-bold leading-relaxed italic">
-                  "At Healing Escape, we are committed to ethical practices and
+                  "At Huma Neurology Center, we are committed to ethical practices and
                   service excellence."
                 </p>
                 <p className="text-slate-500 font-medium text-base leading-relaxed">
