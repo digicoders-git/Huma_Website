@@ -1,38 +1,55 @@
-import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Star, Quote, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const testimonialsData = [
-  {
-    name: "Ramesh Kumar",
-    role: "Stroke Patient, Lucknow",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=300",
-    text: "After my stroke, I was devastated. The team at Huma Neurology Center gave me hope. Their 24/7 stroke unit responded immediately and the neurorehabilitation program helped me regain my speech and mobility. Forever grateful.",
-    rating: 5,
-  },
-  {
-    name: "Priya Sharma",
-    role: "Epilepsy Patient, Kanpur",
-    image:
-      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=300",
-    text: "I had been suffering from uncontrolled seizures for years. The epilepsy specialists at Huma Neurology Center correctly diagnosed my condition through advanced EEG monitoring and put me on the right treatment. I have been seizure-free for 18 months now.",
-    rating: 5,
-  },
-  {
-    name: "Abdul Rauf",
-    role: "Parkinson's Patient, Varanasi",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=300",
-    text: "Managing Parkinson's disease felt overwhelming until we found Huma Neurology Center. Dr. Huma's dedicated movement disorder clinic provided a personalized care plan that significantly improved my father's quality of life. Exceptional care and compassion.",
-    rating: 5,
-  },
-];
+const API = import.meta.env.VITE_API_BASE_URL;
 
 const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchTestimonials = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch(`${API}/testimonial/all`);
+      const data = await res.json();
+      if (data.success) {
+        setTestimonials(data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching testimonials:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
+
+  const getMediaUrl = (url) => {
+    if (!url) return null;
+    if (url.startsWith("http")) return url;
+    const base = API.replace("/api", "");
+    return `${base}${url.startsWith("/") ? "" : "/"}${url}`;
+  };
+
+  if (loading && testimonials.length === 0) {
+    return (
+      <div className="py-20 flex flex-col items-center justify-center">
+        <Loader2 className="animate-spin text-primary mb-2" size={32} />
+        <p className="text-gray-400 font-bold">Loading Testimonials...</p>
+      </div>
+    );
+  }
+
+  // Fallback if no testimonials exist but loading is done
+  if (testimonials.length === 0) return null;
+
   return (
     <section className="py-12 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -68,8 +85,8 @@ const Testimonials = () => {
             }}
             className="testimonial-swiper"
           >
-            {testimonialsData.map((testimonial, index) => (
-              <SwiperSlide key={index}>
+            {testimonials.map((testimonial, index) => (
+              <SwiperSlide key={testimonial._id || index}>
                 <div className="relative p-8 md:p-12 pb-16 rounded-[2.5rem] bg-slate-50 border border-slate-100 flex flex-col items-center text-center gap-6">
                   <div className="absolute top-4 left-4 text-primary/5">
                     <Quote size={80} />
@@ -77,29 +94,32 @@ const Testimonials = () => {
 
                   <div className="relative z-10 space-y-6 max-w-2xl">
                     <div className="flex justify-center gap-1 text-secondary">
-                      {[...Array(testimonial.rating)].map((_, i) => (
+                      {[...Array(Number(testimonial.rating) || 5)].map((_, i) => (
                         <Star key={i} size={20} fill="currentColor" />
                       ))}
                     </div>
 
                     <p className="text-lg md:text-xl font-bold text-slate-700 leading-relaxed italic">
-                      "{testimonial.text}"
+                      "{testimonial.message || testimonial.text || testimonial.content}"
                     </p>
 
+
                     <div className="flex flex-col items-center gap-4">
-                      {/* <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-secondary shadow-lg">
-                        <img
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div> */}
+                      {testimonial.image && (
+                         <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-secondary shadow-lg">
+                           <img
+                             src={getMediaUrl(testimonial.image)}
+                             alt={testimonial.name}
+                             className="w-full h-full object-cover"
+                           />
+                         </div>
+                      )}
                       <div className="text-center">
                         <p className="text-primary font-bold text-lg leading-none">
                           {testimonial.name}
                         </p>
                         <p className="text-slate-400 font-bold uppercase tracking-widest text-[11px] mt-1">
-                          {testimonial.role}
+                          {testimonial.role || testimonial.designation || "Patient"}
                         </p>
                       </div>
                     </div>
