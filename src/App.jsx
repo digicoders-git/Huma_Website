@@ -29,6 +29,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 import PremiumLoader from "./components/PremiumLoader";
+import FloatingContact from "./components/FloatingContact";
 
 const App = () => {
   const location = useLocation();
@@ -75,6 +76,7 @@ const App = () => {
 
       {/* Global Scroll to Top Button */}
       {!isLoaderPage && <ScrollToTop />}
+      {!isLoaderPage && <FloatingContact />}
       {!isLoaderPage && <AppointmentPopup />}
     </div>
   );

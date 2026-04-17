@@ -4,6 +4,9 @@ import {
   X,
   Globe,
   Calendar,
+  BookOpen,
+  PlayCircle,
+  Image as ImageIcon,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -246,7 +249,7 @@ const Navbar = () => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
             transition={{ type: "tween", duration: 0.5, ease: "circOut" }}
-            className="fixed inset-0 bg-white/95 backdrop-blur-xl z-150 xl:hidden font-['Poppins']"
+            className="fixed inset-0 bg-white/95 backdrop-blur-xl z-150 lg:hidden font-['Poppins']"
           >
             <div className="p-8 pt-12 h-full flex flex-col">
               <div className="flex justify-between items-center mb-10">

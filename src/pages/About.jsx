@@ -13,6 +13,7 @@ import PageHero from "../components/PageHero";
 import { motion } from "framer-motion";
 import { fadeIn, staggerContainer } from "../utils/framerVariants";
 import mainLogo from "../assets/main_logo.png";
+// import docter from "public/huma/docter.png";
 
 const bannerSlides = [
   {
@@ -111,7 +112,7 @@ const About = () => {
                 <div className="absolute w-[260px] h-[260px] rounded-full border border-primary/10" style={{ animation: 'spinMgmt 20s linear infinite reverse' }} />
                 <div className="w-48 h-48 md:w-52 md:h-52 rounded-full overflow-hidden border-4 border-white shadow-2xl">
                   <img
-                    src="https://img.freepik.com/free-photo/female-doctor-hospital-with-stethoscope_23-2148827776.jpg"
+                    src="/huma/docter.png"
                     alt="Dr. Mo. Shakil"
                     className="w-full h-full object-cover"
                   />
