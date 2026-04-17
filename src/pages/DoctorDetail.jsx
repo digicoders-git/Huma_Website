@@ -1,106 +1,67 @@
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { GraduationCap, MapPin, Users, Activity, CheckCircle2 } from "lucide-react";
 
-const doctors = [
-  {
-    _id: "1",
-    name: "Dr. Mo. Shakil",
-    designation: "Senior Neurologist",
-    speciality: "Neurology",
-    qualification: "MBBS, MD, DM Neurology",
-    experience: 15,
-    city: "Lucknow",
-    photo: "https://img.freepik.com/free-photo/female-doctor-hospital-with-stethoscope_23-2148827776.jpg",
-    about: "Dr. Mo. Shakil is a Senior Neurologist with 15+ years of expertise in stroke management, epilepsy, and movement disorders. Trained from premier medical institutions, she leads the neurology department at Huma Neurology Center with a patient-first approach.",
-    expertise: ["Stroke & Cerebrovascular Disease", "Epilepsy & Seizure Disorders", "Parkinson's Disease", "Headache & Migraine", "Multiple Sclerosis", "Neuro-Immunology"],
-    procedures: ["IV Thrombolysis for Stroke", "Video EEG Monitoring", "Botox for Migraine", "Lumbar Puncture", "EMG/NCV Studies", "Cognitive Assessment"],
-    whyChoose: ["15+ years of clinical experience in neurology", "Pioneer in stroke thrombolysis in Lucknow", "Compassionate patient-centered care", "Regular training at international neurology conferences"],
-    hospital: { name: "Huma Neurology Center", city: "Lucknow", accreditation: ["NABH"] },
-  },
-  {
-    _id: "2",
-    name: "Dr. Arjun Mehta",
-    designation: "Senior Neurosurgeon",
-    speciality: "Neurosurgery",
-    qualification: "MBBS, MS, MCh Neurosurgery",
-    experience: 18,
-    city: "Lucknow",
-    photo: "https://img.freepik.com/free-photo/doctor-with-his-arms-crossed-white-background_1368-5790.jpg",
-    about: "Dr. Arjun Mehta is an expert neurosurgeon with 18 years of experience specializing in brain tumor surgery, spinal cord disorders, and minimally invasive neurosurgical procedures.",
-    expertise: ["Brain Tumor Surgery", "Spinal Cord Surgery", "Minimally Invasive Neurosurgery", "Hydrocephalus Management", "Peripheral Nerve Surgery", "Skull Base Surgery"],
-    procedures: ["Craniotomy", "Endoscopic Brain Surgery", "Spinal Fusion", "VP Shunt", "Microdiscectomy", "Deep Brain Stimulation"],
-    whyChoose: ["18+ years of neurosurgical expertise", "Specialist in minimally invasive techniques", "Hundreds of successful brain surgeries", "Advanced training in skull base surgery"],
-    hospital: { name: "Huma Neurology Center", city: "Lucknow", accreditation: ["NABH"] },
-  },
-  {
-    _id: "3",
-    name: "Dr. Priya Sharma",
-    designation: "Consultant Neurologist",
-    speciality: "Neurology",
-    qualification: "MBBS, MD, DM Neurology",
-    experience: 12,
-    city: "Lucknow",
-    photo: "https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg",
-    about: "Dr. Priya Sharma is a Consultant Neurologist specializing in epilepsy, headache disorders, and multiple sclerosis with extensive experience in advanced EEG diagnostics and immunotherapy.",
-    expertise: ["Epilepsy & Drug-Resistant Seizures", "Multiple Sclerosis", "Headache & Migraine Clinic", "Autoimmune Neurology", "Neuro-Ophthalmology", "Pediatric Neurology"],
-    procedures: ["Advanced EEG & Video EEG", "Epilepsy Surgery Evaluation", "MS Infusion Therapy", "Botox Injections", "Nerve Conduction Studies", "Neuropsychological Testing"],
-    whyChoose: ["Specialist in drug-resistant epilepsy", "Expert in MS disease-modifying therapies", "12 years of dedicated neurology practice", "Trained in advanced neurodiagnostics"],
-    hospital: { name: "Huma Neurology Center", city: "Lucknow", accreditation: ["NABH"] },
-  },
-  {
-    _id: "4",
-    name: "Dr. Rakesh Verma",
-    designation: "Neuro-Rehabilitation Specialist",
-    speciality: "Neuro-Rehabilitation",
-    qualification: "MBBS, MD, DNB Neurology",
-    experience: 10,
-    city: "Lucknow",
-    photo: "https://img.freepik.com/free-photo/handsome-young-male-doctor-with-stethoscope_171337-1566.jpg",
-    about: "Dr. Rakesh Verma is a dedicated neuro-rehabilitation specialist helping stroke, Parkinson's, and spinal cord injury patients regain function and independence through structured recovery programs.",
-    expertise: ["Post-Stroke Rehabilitation", "Parkinson's Rehabilitation", "Spinal Cord Injury Recovery", "Traumatic Brain Injury", "Neuromuscular Rehabilitation", "Speech & Swallowing Therapy"],
-    procedures: ["Gait Training", "Constraint-Induced Movement Therapy", "Functional Electrical Stimulation", "Cognitive Rehabilitation", "Dysphagia Management", "Spasticity Management"],
-    whyChoose: ["Dedicated neuro-rehabilitation expert", "Multidisciplinary team approach", "Personalized recovery programs", "Proven outcomes in stroke rehabilitation"],
-    hospital: { name: "Huma Neurology Center", city: "Lucknow", accreditation: ["NABH"] },
-  },
-  {
-    _id: "5",
-    name: "Dr. Sunita Agarwal",
-    designation: "Cognitive Neurologist",
-    speciality: "Neurology",
-    qualification: "MBBS, MD, DM Neurology",
-    experience: 14,
-    city: "Lucknow",
-    photo: "https://img.freepik.com/free-photo/woman-doctor-wearing-lab-coat-with-stethoscope-isolated_1303-29791.jpg",
-    about: "Dr. Sunita Agarwal is an expert in memory disorders, dementia, and Alzheimer's disease with specialized training in cognitive neurology and neuropsychological assessment.",
-    expertise: ["Alzheimer's Disease", "Vascular Dementia", "Mild Cognitive Impairment", "Frontotemporal Dementia", "Memory Disorders", "Behavioral Neurology"],
-    procedures: ["Neuropsychological Testing", "Cognitive Assessment Battery", "PET Scan Evaluation", "CSF Biomarker Analysis", "Caregiver Counseling", "Memory Rehabilitation"],
-    whyChoose: ["14 years in cognitive neurology", "Specialist in early Alzheimer's detection", "Comprehensive memory clinic services", "Compassionate dementia care approach"],
-    hospital: { name: "Huma Neurology Center", city: "Lucknow", accreditation: ["NABH"] },
-  },
-  {
-    _id: "6",
-    name: "Dr. Imran Khan",
-    designation: "Interventional Neurologist",
-    speciality: "Interventional Neurology",
-    qualification: "MBBS, MD, DM Neurology",
-    experience: 16,
-    city: "Lucknow",
-    photo: "https://img.freepik.com/free-photo/portrait-smiling-male-doctor_171337-1532.jpg",
-    about: "Dr. Imran Khan is an interventional neurologist specializing in mechanical thrombectomy, carotid stenting, and endovascular treatment of cerebrovascular diseases.",
-    expertise: ["Mechanical Thrombectomy", "Carotid Artery Stenting", "Cerebral Angiography", "AVM Embolization", "Intracranial Angioplasty", "Stroke Intervention"],
-    procedures: ["Mechanical Thrombectomy", "Carotid Stenting", "Diagnostic Cerebral Angiography", "Coil Embolization", "Intracranial Stenting", "IV Thrombolysis"],
-    whyChoose: ["16 years in interventional neurology", "Pioneer in mechanical thrombectomy in UP", "24/7 stroke intervention availability", "Hundreds of successful endovascular procedures"],
-    hospital: { name: "Huma Neurology Center", city: "Lucknow", accreditation: ["NABH"] },
-  },
-];
-
 const DoctorDetail = () => {
   const { id } = useParams();
-  const doctor = doctors.find((d) => d._id === id);
+  const [doctor, setDoctor] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
+
+  useEffect(() => {
+    const fetchDoctor = async () => {
+      try {
+        const res = await fetch(`${API_URL}/doctor/${id}`);
+        const data = await res.json();
+        if (data.success && data.data) {
+          const d = data.data;
+          
+          let exp = 10;
+          if (d.startDate) {
+            exp = new Date().getFullYear() - new Date(d.startDate).getFullYear();
+            if (exp < 1) exp = 1;
+          }
+          if (d.experience) exp = d.experience;
+
+          setDoctor({
+            ...d,
+            _id: d._id,
+            name: d.fullName,
+            designation: d.designation || "Senior Consultant",
+            speciality: d.department || "Neurology",
+            qualification: d.qualification || d.specialization || "MBBS, MD",
+            experience: exp,
+            city: d.city || "Lucknow",
+            photo: d.avatar ? `${API_URL.replace('/api', '')}${d.avatar}` : "https://cdn-icons-png.flaticon.com/512/3774/3774299.png",
+            about: d.about || "Experienced specialist providing world-class healthcare and clinical excellence.",
+            expertise: Array.isArray(d.expertise) && d.expertise.length > 0 ? d.expertise : ["Neurological Disorders", "General Consultation"],
+            procedures: Array.isArray(d.procedures) && d.procedures.length > 0 ? d.procedures : ["Diagnostic Evaluation"],
+            whyChoose: Array.isArray(d.whyChoose) && d.whyChoose.length > 0 ? d.whyChoose : ["Years of clinical experience", "Compassionate patient-centered care"],
+            hospital: { name: "Huma Neurology Center", city: "Lucknow", accreditation: ["NABH"] }
+          });
+        }
+      } catch (err) {
+        console.error("Error fetching doctor detail:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchDoctor();
+  }, [id, API_URL]);
+
+  if (loading) {
+    return (
+      <div className="py-40 flex flex-col items-center justify-center bg-white min-h-[60vh]">
+        <div className="w-12 h-12 border-4 border-secondary border-t-transparent rounded-full animate-spin mb-4" />
+        <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Loading Profile...</p>
+      </div>
+    );
+  }
 
   if (!doctor) {
     return (
-      <div className="py-40 text-center space-y-8">
+      <div className="py-40 text-center space-y-8 min-h-[60vh] flex flex-col items-center justify-center">
         <h2 className="text-4xl font-black text-primary">Doctor Not Found</h2>
         <Link to="/doctors" className="text-secondary font-bold uppercase tracking-widest border-b-2 border-secondary pb-1 cursor-pointer">
           Back to Listing

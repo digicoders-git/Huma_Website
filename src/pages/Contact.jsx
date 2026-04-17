@@ -36,9 +36,38 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    
+    try {
+      const res = await fetch(`${API_URL}/enquiry/create`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          country: formData.country,
+          message: formData.message
+        }),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+        setFormData({ fullName: "", country: "", email: "", phone: "", message: "" });
+      } else {
+        alert(data.message || "Failed to submit enquiry.");
+      }
+    } catch (err) {
+      console.error("Enquiry submission error:", err);
+      alert("Server error. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -97,12 +126,12 @@ const Contact = () => {
                 {
                   icon: <MapPin size={24} />,
                   label: "Visit Us",
-                  value: "KGMC Lucknow, India",
+                  value: "538/643 Baba Ka Purwa Bandha Road Roop Pur Khadra Lucknow Landmark - Mansha Ram Mandir",
                 },
                 {
                   icon: <Clock size={24} />,
                   label: "Working Hours",
-                  value: "Mon-Sat: 10AM-7PM",
+                  value: "Mon - Sat: 10AM - 7PM (IST)",
                 },
               ].map((item, i) => (
                 <div
@@ -152,7 +181,7 @@ const Contact = () => {
                       {
                         icon: <MapPin size={20} />,
                         label: "Location",
-                        val: "KGMC Lucknow, Uttar Pradesh, India",
+                        val: "538/643 Baba Ka Purwa Bandha Road Roop Pur Khadra Lucknow Landmark - Mansha Ram Mandir",
                       },
                       {
                         icon: <Phone size={20} />,
@@ -471,14 +500,8 @@ const Contact = () => {
             variants={fadeIn("left", 0.2)}
             className="h-[350px] md:h-[500px] w-full bg-slate-100 rounded overflow-hidden border-4 md:border-8 border-slate-50 shadow-2xl"
           >
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227822.6037221524!2d80.77769805023176!3d26.84859648069349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd991f32b16b%3A0x93ccba8909978be7!2sLucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1768289417351!5m2!1sen!2sin"
-              className="w-full h-full"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.7994701751404!2d80.9135835!3d26.8781115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd48bafc76cd%3A0x2a3343cec651cb4a!2sHuma%20Neurology%20Centre%20-%20Best%20Neurologist!5e0!3m2!1sen!2sin!4v1776428981686!5m2!1sen!2sin" 
+          className="w-full h-full" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" ></iframe>
           </motion.div>
         </div>
       </motion.section>

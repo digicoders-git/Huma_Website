@@ -1,11 +1,58 @@
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Calendar, ArrowLeft, ArrowRight, Send, CheckCircle2 } from "lucide-react";
-import { blogs } from "./Blogs";
+import { Calendar, ArrowLeft, ArrowRight, Send, CheckCircle2, Loader2 } from "lucide-react";
+
+const API = import.meta.env.VITE_API_BASE_URL;
 
 const BlogDetail = () => {
   const { id } = useParams();
-  const blog = blogs.find((b) => b._id === id);
-  const relatedArticles = blogs.filter((b) => b._id !== id).slice(0, 3);
+  const [blog, setBlog] = useState(null);
+  const [relatedArticles, setRelatedArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      try {
+        setLoading(true);
+        // Fetch current blog
+        const res = await fetch(`${API}/blog/${id}`);
+        const data = await res.json();
+        if (data.success) {
+          setBlog(data.data);
+          
+          // Fetch related blogs (all blogs but current one)
+          const allRes = await fetch(`${API}/blog/all?isPublished=true`);
+          const allData = await allRes.json();
+          if (allData.success) {
+            setRelatedArticles(allData.data.filter(b => b._id !== id).slice(0, 3));
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching blog details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogData();
+    window.scrollTo(0, 0);
+  }, [id]);
+
+  const getMediaUrl = (url) => {
+    if (!url) return "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800";
+    if (url.startsWith("http")) return url;
+    const base = API.replace("/api", "");
+    return `${base}${url.startsWith("/") ? "" : "/"}${url}`;
+  };
+
+  if (loading) {
+    return (
+      <div className="py-40 flex flex-col items-center justify-center gap-4">
+        <Loader2 size={48} className="text-secondary animate-spin" />
+        <p className="text-primary font-bold uppercase tracking-widest italic">Loading Article...</p>
+      </div>
+    );
+  }
 
   if (!blog) {
     return (
@@ -22,7 +69,7 @@ const BlogDetail = () => {
     <div className="bg-white">
       {/* Hero */}
       <section className="relative h-[50vh] overflow-hidden bg-primary pt-[72px]">
-        <img src={blog.image} className="absolute inset-0 w-full h-full object-cover opacity-20" alt={blog.title} />
+        <img src={getMediaUrl(blog.coverImage)} className="absolute inset-0 w-full h-full object-cover opacity-20" alt={blog.title} />
         <div className="relative h-full flex items-center px-4 md:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-4">
             <Link to="/blogs" className="inline-flex items-center gap-2 text-white/70 hover:text-secondary transition-colors text-sm mb-4">
@@ -33,7 +80,7 @@ const BlogDetail = () => {
                 {blog.category}
               </span>
               <span className="flex items-center gap-2">
-                <Calendar size={14} /> {blog.date}
+                <Calendar size={14} /> {new Date(blog.createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
               </span>
             </div>
             <h1 className="text-2xl md:text-4xl font-bold text-white leading-tight">{blog.title}</h1>
@@ -100,7 +147,7 @@ const BlogDetail = () => {
             {relatedArticles.map((art, idx) => (
               <Link to={`/blogs/${art._id}`} key={idx} className="group bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-md transition-all">
                 <div className="h-32 overflow-hidden">
-                  <img src={art.image} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt={art.title} />
+                  <img src={getMediaUrl(art.coverImage)} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" alt={art.title} />
                 </div>
                 <div className="p-4 space-y-2">
                   <h4 className="font-bold text-primary group-hover:text-secondary transition-colors line-clamp-2 text-sm">{art.title}</h4>

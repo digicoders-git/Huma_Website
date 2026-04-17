@@ -1,6 +1,8 @@
-import { useState } from "react";
-import { X, Maximize2, Image as ImageIcon } from "lucide-react";
+import { useState, useEffect } from "react";
+import { X, Maximize2, Image as ImageIcon, Loader2 } from "lucide-react";
 import PageHero from "../components/PageHero";
+
+const API = import.meta.env.VITE_API_BASE_URL;
 
 const bannerSlides = [
   {
@@ -12,31 +14,44 @@ const bannerSlides = [
   },
 ];
 
-const gallery = [
-  { _id: "1", caption: "State-of-the-Art Neurology OPD", category: "Facilities", image: "/huma/h1.jpeg" },
-  { _id: "2", caption: "Advanced EEG Monitoring Lab", category: "Diagnostics", image: "/huma/h2.jpeg" },
-  { _id: "3", caption: "Expert Neurologist Consultation", category: "Patient Care", image: "/huma/h3.jpeg" },
-  { _id: "4", caption: "MRI Brain Imaging Suite", category: "Diagnostics", image: "/huma/h4.jpeg" },
-  { _id: "5", caption: "Neuro-Rehabilitation Therapy Session", category: "Rehabilitation", image: "/huma/h5.jpeg" },
-  { _id: "6", caption: "Stroke Unit — 24/7 Emergency Care", category: "Facilities", image: "/huma/h6.jpeg" },
-  { _id: "7", caption: "Patient Recovery & Post-Treatment Care", category: "Patient Care", image: "/huma/h7.jpeg" },
-  { _id: "8", caption: "Neurology Team Case Discussion", category: "Team", image: "/huma/h8.jpeg" },
-  { _id: "9", caption: "Modern Operation Theatre", category: "Facilities", image: "/huma/h9.jpeg" },
-  { _id: "10", caption: "Compassionate Doctor-Patient Interaction", category: "Patient Care", image: "/huma/h10.jpeg" },
-  { _id: "11", caption: "EMG & Nerve Conduction Study Lab", category: "Diagnostics", image: "/huma/h1.jpeg" },
-  { _id: "12", caption: "Physiotherapy & Movement Disorder Clinic", category: "Rehabilitation", image: "/huma/h2.jpeg" },
-];
-
 const Gallery = () => {
+  const [galleryItems, setGalleryItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const galleryCategories = ["All", ...new Set(gallery.map((g) => g.category))];
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(`${API}/gallery/all`);
+        const data = await res.json();
+        if (data.success) {
+          setGalleryItems(data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching gallery:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGallery();
+  }, []);
+
+  const galleryCategories = ["All", ...new Set(galleryItems.map((g) => g.category))];
 
   const filteredImages =
     activeCategory === "All"
-      ? gallery
-      : gallery.filter((img) => img.category === activeCategory);
+      ? galleryItems
+      : galleryItems.filter((img) => img.category === activeCategory);
+
+  const getMediaUrl = (url) => {
+    if (!url) return "/huma/h1.jpeg";
+    if (url.startsWith("http")) return url;
+    const base = API.replace("/api", "");
+    return `${base}${url.startsWith("/") ? "" : "/"}${url}`;
+  };
 
   return (
     <div className="bg-white">
@@ -73,7 +88,12 @@ const Gallery = () => {
       {/* Gallery Grid */}
       <section id="gallery-grid" className="py-6 px-4 md:px-8">
         <div className="max-w-5xl mx-auto">
-          {filteredImages.length > 0 ? (
+          {loading ? (
+            <div className="py-20 flex flex-col items-center justify-center gap-4">
+              <Loader2 size={40} className="text-secondary animate-spin" />
+              <p className="text-slate-400 font-bold uppercase text-xs tracking-widest">Loading Gallery...</p>
+            </div>
+          ) : filteredImages.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredImages.map((item) => (
                 <div
@@ -82,9 +102,9 @@ const Gallery = () => {
                   className="group relative h-64 rounded-2xl overflow-hidden cursor-pointer bg-slate-100 border border-slate-100 hover:shadow-md transition-all"
                 >
                   <img
-                    src={item.image}
+                    src={getMediaUrl(item.image)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-                    alt={item.caption}
+                    alt={item.title || item.caption}
                   />
                   <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <div className="w-12 h-12 bg-white text-primary rounded-full flex items-center justify-center shadow-lg">
@@ -95,7 +115,7 @@ const Gallery = () => {
                     {item.category}
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-primary/90 to-transparent">
-                    <h3 className="text-white font-bold text-sm line-clamp-2">{item.caption}</h3>
+                    <h3 className="text-white font-bold text-sm line-clamp-2">{item.title || item.caption}</h3>
                   </div>
                 </div>
               ))}
@@ -125,9 +145,9 @@ const Gallery = () => {
           <div className="max-w-5xl w-full relative animate-fade-in" onClick={(e) => e.stopPropagation()}>
             <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
               <img
-                src={selectedImage.image}
+                src={getMediaUrl(selectedImage.image)}
                 className="w-full max-h-[85vh] object-contain"
-                alt={selectedImage.caption}
+                alt={selectedImage.title || selectedImage.caption}
               />
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
                 <div className="flex items-center gap-3 mb-2">
@@ -135,7 +155,7 @@ const Gallery = () => {
                     {selectedImage.category}
                   </span>
                 </div>
-                <h2 className="text-white text-xl md:text-2xl font-bold leading-tight">{selectedImage.caption}</h2>
+                <h2 className="text-white text-xl md:text-2xl font-bold leading-tight">{selectedImage.title || selectedImage.caption}</h2>
               </div>
             </div>
           </div>

@@ -224,7 +224,8 @@ const Footer = () => {
                 className="text-secondary shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300"
               />
               <span className="leading-relaxed">
-               KGMC ,Lucknow, Uttar Pradesh, India
+               538/643 Baba Ka Purwa Bandha Road Roop Pur Khadra Lucknow
+Landmark - Mansha Ram Mandir
               </span>
             </li>
             <li className="flex items-center gap-4 text-white/90 text-base group hover:text-secondary transition-colors duration-300">

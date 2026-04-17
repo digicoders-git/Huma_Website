@@ -222,8 +222,8 @@ const Emergency = () => {
             <h2 className="text-2xl md:text-3xl font-extrabold text-primary uppercase italic">Find Us — Huma Neurology Center</h2>
             <div className="space-y-3">
               {[
-                { icon: <MapPin size={16} />, text: "Lucknow, Uttar Pradesh, India — " },
-                { icon: <Clock size={16} />, text: "OPD: Mon – Sat, 9:00 AM – 6:00 PM" },
+                { icon: <MapPin size={16} />, text: "538/643 Baba Ka Purwa Bandha Road Roop Pur Khadra Lucknow Landmark - Mansha Ram Mandir" },
+                { icon: <Clock size={16} />, text: "OPD: 12.00 to 5.00 Morning, 8.30 to 10.00 Evening" },
                 { icon: <Phone size={16} />, text: "Emergency: 24/7 — +91 7849893727" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 p-3 bg-white border border-slate-100 rounded-xl">
@@ -242,10 +242,8 @@ const Emergency = () => {
             </div>
           </div>
           <div className="h-[300px] rounded-2xl overflow-hidden border-4 border-white shadow-xl">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227822.6037221524!2d80.77769805023176!3d26.84859648069349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd991f32b16b%3A0x93ccba8909978be7!2sLucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1768289417351!5m2!1sen!2sin"
-              className="w-full h-full" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-            />
+           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.7994701751404!2d80.9135835!3d26.8781115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd48bafc76cd%3A0x2a3343cec651cb4a!2sHuma%20Neurology%20Centre%20-%20Best%20Neurologist!5e0!3m2!1sen!2sin!4v1776428981686!5m2!1sen!2sin" 
+          className="w-full h-full" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" ></iframe>
           </div>
         </div>
       </section>

@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeIn, staggerContainer } from "../utils/framerVariants";
 import PageHero from "../components/PageHero";
 import { Link } from "react-router-dom";
 import { X, ArrowRight, CheckCircle2 } from "lucide-react";
+
+const getFullImageUrl = (path) => {
+  if (!path) return "https://plus.unsplash.com/premium_photo-1673953509975-576678fa6710?w=800&auto=format&fit=crop";
+  if (path.startsWith("http")) return path;
+  if (path.startsWith("/huma")) return path;
+  const apiBase = import.meta.env.VITE_API_BASE_URL?.replace("/api", "") || "";
+  return `${apiBase}${path.startsWith('/') ? '' : '/'}${path}`;
+};
 
 const bannerSlides = [
   {
@@ -15,115 +23,27 @@ const bannerSlides = [
   },
 ];
 
-const departments = [
-  {
-    id: "1",
-    name: "General Neurology",
-    shortDesc: "Comprehensive diagnosis & treatment for all neurological conditions.",
-    image: "/huma/h1.jpeg",
-    color: "from-blue-600 to-blue-800",
-    icon: "🧠",
-    about: "Our General Neurology department is the backbone of Huma Neurology Center. Led by senior DM/MD Neurologists, we evaluate and manage the full spectrum of neurological disorders with precision and compassion.",
-    conditions: ["Stroke & TIA", "Epilepsy & Seizures", "Headache & Migraine", "Dizziness & Vertigo", "Neuropathy", "Encephalitis & Meningitis"],
-    services: ["Comprehensive Neuro OPD", "Inpatient Neurology Care", "Telemedicine Consultation", "Second Opinion Services"],
-    head: "Dr. Mo. Shakil",
-    qualification: "MBBS, MD, DM Neurology",
-  },
-  {
-    id: "2",
-    name: "Stroke & Cerebrovascular Unit",
-    shortDesc: "24/7 acute stroke care with thrombolysis & thrombectomy.",
-    image: "/huma/h2.jpeg",
-    color: "from-red-600 to-red-800",
-    icon: "⚡",
-    about: "Our dedicated Stroke Unit operates 24 hours a day, 7 days a week. We provide the fastest possible response to acute stroke with IV thrombolysis and coordination for mechanical thrombectomy — saving brain cells every minute.",
-    conditions: ["Ischemic Stroke", "Hemorrhagic Stroke", "TIA (Mini Stroke)", "Carotid Artery Disease", "Cerebral Venous Thrombosis", "Subarachnoid Hemorrhage"],
-    services: ["24/7 Stroke Emergency", "IV Thrombolysis", "Mechanical Thrombectomy", "Neuro-ICU Monitoring", "Post-Stroke Rehabilitation"],
-    head: "Dr. Imran Khan",
-    qualification: "MBBS, MD, DM Neurology (Interventional)",
-  },
-  {
-    id: "3",
-    name: "Epilepsy & EEG Department",
-    shortDesc: "Advanced EEG monitoring & comprehensive epilepsy management.",
-    image: "/huma/h3.jpeg",
-    color: "from-purple-600 to-purple-800",
-    icon: "📊",
-    about: "Our Epilepsy Department offers state-of-the-art video-EEG monitoring, drug-resistant epilepsy evaluation, and personalized seizure management programs. We help patients achieve seizure freedom and live normal lives.",
-    conditions: ["Generalized Epilepsy", "Focal Epilepsy", "Drug-Resistant Epilepsy", "Absence Seizures", "Juvenile Myoclonic Epilepsy", "Status Epilepticus"],
-    services: ["Routine & Ambulatory EEG", "Video-EEG Monitoring", "Epilepsy Surgery Evaluation", "Anti-Seizure Medication Management", "Ketogenic Diet Clinic"],
-    head: "Dr. Priya Sharma",
-    qualification: "MBBS, MD, DM Neurology",
-  },
-  {
-    id: "4",
-    name: "Movement Disorders Clinic",
-    shortDesc: "Specialized care for Parkinson's, tremors & dystonia.",
-    image: "/huma/h4.jpeg",
-    color: "from-green-600 to-green-800",
-    icon: "🤲",
-    about: "Our Movement Disorders Clinic provides expert evaluation and management of Parkinson's disease and all related movement disorders. We offer the latest pharmacological treatments and evaluate patients for Deep Brain Stimulation (DBS) surgery.",
-    conditions: ["Parkinson's Disease", "Essential Tremor", "Dystonia", "Huntington's Disease", "Ataxia", "Restless Legs Syndrome"],
-    services: ["Parkinson's OPD", "DBS Evaluation", "Botox for Dystonia & Tremor", "Gait Analysis", "Parkinson's Rehabilitation"],
-    head: "Dr. Mo. Shakil",
-    qualification: "MBBS, MD, DM Neurology",
-  },
-  {
-    id: "5",
-    name: "Memory & Cognitive Neurology",
-    shortDesc: "Early Alzheimer's detection & dementia management.",
-    image: "/huma/h5.jpeg",
-    color: "from-amber-600 to-amber-800",
-    icon: "💭",
-    about: "Our Memory Clinic specializes in the early detection and comprehensive management of Alzheimer's disease, vascular dementia, and other cognitive disorders. We use advanced neuropsychological testing and biomarker analysis for accurate diagnosis.",
-    conditions: ["Alzheimer's Disease", "Vascular Dementia", "Frontotemporal Dementia", "Mild Cognitive Impairment", "Lewy Body Dementia", "Normal Pressure Hydrocephalus"],
-    services: ["Cognitive Assessment Battery", "Neuropsychological Testing", "MRI Brain Volumetry", "Caregiver Counseling", "Cognitive Rehabilitation"],
-    head: "Dr. Sunita Agarwal",
-    qualification: "MBBS, MD, DM Neurology",
-  },
-  {
-    id: "6",
-    name: "Neuro-Rehabilitation Department",
-    shortDesc: "Structured recovery for stroke, spinal & brain injury patients.",
-    image: "/huma/h6.jpeg",
-    color: "from-teal-600 to-teal-800",
-    icon: "🏃",
-    about: "Our Neuro-Rehabilitation Department provides comprehensive, multidisciplinary recovery programs for patients with neurological injuries. We harness the brain's neuroplasticity to help patients regain maximum function and independence.",
-    conditions: ["Post-Stroke Rehabilitation", "Spinal Cord Injury", "Traumatic Brain Injury", "Parkinson's Rehabilitation", "MS Rehabilitation", "Neuromuscular Disease"],
-    services: ["Physiotherapy", "Speech & Swallowing Therapy", "Occupational Therapy", "Cognitive Rehabilitation", "Functional Electrical Stimulation"],
-    head: "Dr. Rakesh Verma",
-    qualification: "MBBS, MD, DNB Neurology",
-  },
-  {
-    id: "7",
-    name: "Headache & Pain Clinic",
-    shortDesc: "Expert management of migraine, cluster & chronic headache.",
-    image: "/huma/h7.jpeg",
-    color: "from-rose-600 to-rose-800",
-    icon: "💊",
-    about: "Our dedicated Headache Clinic offers specialized evaluation and treatment for all types of headache disorders. From chronic migraine to rare headache syndromes, we provide evidence-based treatments including Botox therapy and CGRP antagonists.",
-    conditions: ["Chronic Migraine", "Cluster Headache", "Tension-Type Headache", "Medication Overuse Headache", "New Daily Persistent Headache", "Trigeminal Neuralgia"],
-    services: ["Headache Diary Analysis", "Botox for Chronic Migraine", "CGRP Antagonist Therapy", "Nerve Block Procedures", "Preventive Medication Management"],
-    head: "Dr. Priya Sharma",
-    qualification: "MBBS, MD, DM Neurology",
-  },
-  {
-    id: "8",
-    name: "Neuromuscular & EMG Lab",
-    shortDesc: "EMG/NCV testing for nerve & muscle disease diagnosis.",
-    image: "/huma/h8.jpeg",
-    color: "from-indigo-600 to-indigo-800",
-    icon: "⚙️",
-    about: "Our Neuromuscular Department and EMG Lab provides advanced electrodiagnostic testing for peripheral nerve and muscle diseases. Our state-of-the-art EMG/NCV lab delivers accurate, rapid results for complex neuromuscular conditions.",
-    conditions: ["Peripheral Neuropathy", "Guillain-Barré Syndrome", "Myasthenia Gravis", "Motor Neuron Disease (ALS)", "Muscular Dystrophy", "Charcot-Marie-Tooth Disease"],
-    services: ["EMG (Electromyography)", "Nerve Conduction Studies (NCV)", "Repetitive Nerve Stimulation", "Single Fiber EMG", "IVIG & Plasma Exchange"],
-    head: "Dr. Imran Khan",
-    qualification: "MBBS, MD, DM Neurology",
-  },
-];
-
 const Departments = () => {
   const [selected, setSelected] = useState(null);
+  const [departments, setDepartments] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/department`);
+        const data = await res.json();
+        if (data.success) {
+          setDepartments(data.data.filter((d) => d.isActive !== false));
+        }
+      } catch (error) {
+        console.error("Failed to fetch departments:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchDepartments();
+  }, []);
 
   return (
     <div className="bg-white">
@@ -144,40 +64,47 @@ const Departments = () => {
       </section>
 
       {/* Departments Grid */}
-      <section id="departments" className="py-12 px-4 md:px-8 bg-white">
-        <motion.div
-          variants={staggerContainer(0.1, 0.1)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {departments.map((dept, idx) => (
-            <motion.div
-              key={dept.id}
-              variants={fadeIn("up", 0.05 * idx)}
-              onClick={() => setSelected(dept)}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500 h-[280px]"
-            >
-              <img
-                src={dept.image}
-                alt={dept.name}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className={`absolute inset-0 bg-gradient-to-t ${dept.color} opacity-75 group-hover:opacity-90 transition-opacity duration-500`} />
+      <section id="departments" className="py-12 px-4 md:px-8 bg-white min-h-[50vh]">
+        {loading ? (
+          <div className="flex flex-col items-center justify-center p-20">
+            <div className="w-12 h-12 border-4 border-secondary border-t-transparent rounded-full animate-spin mb-4" />
+            <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Loading Departments...</p>
+          </div>
+        ) : (
+          <motion.div
+            variants={staggerContainer(0.1, 0.1)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {departments.map((dept, idx) => (
+              <motion.div
+                key={dept._id || idx}
+                variants={fadeIn("up", 0.05 * idx)}
+                onClick={() => setSelected(dept)}
+                className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500 h-[280px]"
+              >
+                <img
+                  src={getFullImageUrl(dept.image)}
+                  alt={dept.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-t ${dept.color ? dept.color : 'from-slate-800 to-transparent'} opacity-75 group-hover:opacity-90 transition-opacity duration-500`} />
 
-              <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
-                <div className="text-3xl mb-2">{dept.icon}</div>
-                <div className="w-8 h-0.5 bg-white/60 rounded-full mb-2" />
-                <h3 className="font-bold text-lg leading-tight uppercase tracking-tight">{dept.name}</h3>
-                <p className="text-white/70 text-xs font-medium mt-1 line-clamp-2">{dept.shortDesc}</p>
-                <div className="flex items-center gap-1 mt-3 text-white/80 text-xs font-bold uppercase tracking-widest">
-                  View Details <ArrowRight size={12} />
+                <div className="absolute inset-0 p-6 flex flex-col justify-end text-white relative z-10">
+                  <div className="text-3xl mb-2">{dept.icon || "🏥"}</div>
+                  <div className="w-8 h-0.5 bg-white/60 rounded-full mb-2" />
+                  <h3 className="font-bold text-lg leading-tight uppercase tracking-tight">{dept.name}</h3>
+                  <p className="text-white/70 text-xs font-medium mt-1 line-clamp-2">{dept.shortDesc}</p>
+                  <div className="flex items-center gap-1 mt-3 text-white/80 text-xs font-bold uppercase tracking-widest">
+                    View Details <ArrowRight size={12} />
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
       </section>
 
       {/* Department Detail Modal */}
@@ -195,14 +122,14 @@ const Departments = () => {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-5xl bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]"
+              className="relative w-full max-w-5xl bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] z-10"
             >
               {/* Image Side */}
               <div className="w-full md:w-2/5 relative h-[220px] md:h-auto shrink-0">
-                <img src={selected.image} alt={selected.name} className="w-full h-full object-cover" />
-                <div className={`absolute inset-0 bg-gradient-to-t ${selected.color} opacity-60`} />
+                <img src={getFullImageUrl(selected.image)} alt={selected.name} className="w-full h-full object-cover" />
+                <div className={`absolute inset-0 bg-gradient-to-t ${selected.color ? selected.color : 'from-slate-800 to-transparent'} opacity-60`} />
                 <div className="absolute bottom-6 left-6 text-white">
-                  <div className="text-4xl mb-2">{selected.icon}</div>
+                  <div className="text-4xl mb-2">{selected.icon || "🏥"}</div>
                   <h2 className="text-xl font-black uppercase leading-tight">{selected.name}</h2>
                 </div>
                 <button
@@ -228,7 +155,7 @@ const Departments = () => {
                     <div className="w-2 h-2 bg-secondary rounded-full" />
                     <div>
                       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Department Head</p>
-                      <p className="font-bold text-primary text-sm">{selected.head} <span className="text-slate-400 font-medium">— {selected.qualification}</span></p>
+                      <p className="font-bold text-primary text-sm">{selected.head || 'Senior Consultant'} <span className="text-slate-400 font-medium">— {selected.qualification || 'MBBS, MD'}</span></p>
                     </div>
                   </div>
 
@@ -237,10 +164,11 @@ const Departments = () => {
                     <h4 className="text-xs font-bold text-primary uppercase tracking-widest flex items-center gap-2">
                       <div className="w-4 h-0.5 bg-secondary rounded-full" /> About Department
                     </h4>
-                    <p className="text-slate-600 text-sm leading-relaxed font-medium">{selected.about}</p>
+                    <p className="text-slate-600 text-sm leading-relaxed font-medium">{selected.about || 'Specialized and comprehensive care.'}</p>
                   </div>
 
                   {/* Conditions */}
+                  {selected.conditions && selected.conditions.length > 0 && (
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold text-primary uppercase tracking-widest flex items-center gap-2">
                       <div className="w-4 h-0.5 bg-secondary rounded-full" /> Conditions Treated
@@ -253,8 +181,10 @@ const Departments = () => {
                       ))}
                     </div>
                   </div>
+                  )}
 
                   {/* Services */}
+                  {selected.services && selected.services.length > 0 && (
                   <div className="space-y-3">
                     <h4 className="text-xs font-bold text-primary uppercase tracking-widest flex items-center gap-2">
                       <div className="w-4 h-0.5 bg-secondary rounded-full" /> Services Offered
@@ -268,6 +198,7 @@ const Departments = () => {
                       ))}
                     </div>
                   </div>
+                  )}
 
                   <div className="pt-4 border-t border-slate-100">
                     <Link

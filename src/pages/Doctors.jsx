@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Clock, Search, ArrowRight, Calendar } from "lucide-react";
 import PageHero from "../components/PageHero";
@@ -13,77 +13,70 @@ const bannerSlides = [
   },
 ];
 
-const doctors = [
-  {
-    _id: "1",
-    name: "Dr. Mo. Shakil",
-    speciality: "Neurology",
-    qualification: "MBBS, MD, DM Neurology",
-    experience: 15,
-    city: "Lucknow",
-    photo: "https://img.freepik.com/free-photo/female-doctor-hospital-with-stethoscope_23-2148827776.jpg",
-    about: "Senior Neurologist with 15+ years of expertise in stroke management, epilepsy, and movement disorders. Trained from premier medical institutions.",
-    availability: { days: "Mon – Sat", time: "10:00 AM – 2:00 PM", status: "available" },
-  },
-  {
-    _id: "2",
-    name: "Dr. Arjun Mehta",
-    speciality: "Neurosurgery",
-    qualification: "MBBS, MS, MCh Neurosurgery",
-    experience: 18,
-    city: "Lucknow",
-    photo: "https://img.freepik.com/free-photo/doctor-with-his-arms-crossed-white-background_1368-5790.jpg",
-    about: "Expert neurosurgeon specializing in brain tumor surgery, spinal cord disorders, and minimally invasive neurosurgical procedures.",
-    availability: { days: "Mon, Wed, Fri", time: "9:00 AM – 1:00 PM", status: "available" },
-  },
-  {
-    _id: "3",
-    name: "Dr. Priya Sharma",
-    speciality: "Neurology",
-    qualification: "MBBS, MD, DM Neurology",
-    experience: 12,
-    city: "Lucknow",
-    photo: "https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg",
-    about: "Specialist in epilepsy, headache disorders, and multiple sclerosis with extensive experience in advanced EEG diagnostics and immunotherapy.",
-    availability: { days: "Tue, Thu, Sat", time: "11:00 AM – 3:00 PM", status: "available" },
-  },
-  {
-    _id: "4",
-    name: "Dr. Rakesh Verma",
-    speciality: "Neuro-Rehabilitation",
-    qualification: "MBBS, MD, DNB Neurology",
-    experience: 10,
-    city: "Lucknow",
-    photo: "https://img.freepik.com/free-photo/handsome-young-male-doctor-with-stethoscope_171337-1566.jpg",
-    about: "Dedicated neuro-rehabilitation specialist helping stroke, Parkinson's, and spinal cord injury patients regain function and independence.",
-    availability: { days: "Mon – Fri", time: "2:00 PM – 6:00 PM", status: "available" },
-  },
-  {
-    _id: "5",
-    name: "Dr. Sunita Agarwal",
-    speciality: "Neurology",
-    qualification: "MBBS, MD, DM Neurology",
-    experience: 14,
-    city: "Lucknow",
-    photo: "https://img.freepik.com/free-photo/woman-doctor-wearing-lab-coat-with-stethoscope-isolated_1303-29791.jpg",
-    about: "Expert in memory disorders, dementia, and Alzheimer's disease with specialized training in cognitive neurology and neuropsychological assessment.",
-    availability: { days: "Mon, Wed, Sat", time: "10:00 AM – 1:00 PM", status: "busy" },
-  },
-  {
-    _id: "6",
-    name: "Dr. Imran Khan",
-    speciality: "Interventional Neurology",
-    qualification: "MBBS, MD, DM Neurology",
-    experience: 16,
-    city: "Lucknow",
-    photo: "https://img.freepik.com/free-photo/portrait-smiling-male-doctor_171337-1532.jpg",
-    about: "Interventional neurologist specializing in mechanical thrombectomy, carotid stenting, and endovascular treatment of cerebrovascular diseases.",
-    availability: { days: "24/7 Emergency", time: "On-Call Available", status: "emergency" },
-  },
-];
-
 const Doctors = () => {
+  const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState("All");
+
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
+
+  const fetchDoctors = async () => {
+    try {
+      const res = await fetch(`${API_URL}/doctor`);
+      const data = await res.json();
+      if (data.success) {
+        // Map backend structure to fit frontend UI perfectly
+        const mapped = (data.data || []).filter(d => d.isActive).map(d => {
+          // Process schedule to summarize availability
+          let availDays = "Mon - Sat";
+          let availTime = "10:00 AM - 02:00 PM";
+          
+          if (d.schedule) {
+            const activeDays = Object.keys(d.schedule).filter(day => d.schedule[day].checked);
+            if (activeDays.length > 0) {
+              const firstDay = activeDays[0];
+              const lastDay = activeDays[activeDays.length - 1];
+              availDays = activeDays.length === 1 ? firstDay : `${firstDay} - ${lastDay}`;
+              availTime = `${d.schedule[firstDay].start} - ${d.schedule[firstDay].end}`;
+            }
+          }
+
+          // Calculate experience from startDate
+          let exp = 10;
+          if (d.startDate) {
+            exp = new Date().getFullYear() - new Date(d.startDate).getFullYear();
+            if (exp < 1) exp = 1;
+          }
+          if (d.experience) exp = d.experience;
+
+          return {
+            ...d,
+            _id: d._id,
+            name: d.fullName,
+            speciality: d.department || "Neurology",
+            qualification: d.specialization || "MD, DM Neurology",
+            experience: exp,
+            city: "Lucknow", // Default since it's a local center
+            photo: d.avatar ? `${API_URL.replace('/api', '')}${d.avatar}` : "https://cdn-icons-png.flaticon.com/512/3774/3774299.png",
+            availability: {
+              days: availDays,
+              time: availTime,
+              status: d.status?.toLowerCase() === "available" ? "available" : "busy"
+            }
+          };
+        });
+        setDoctors(mapped);
+      }
+    } catch (err) {
+      console.error("Error fetching doctors:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchDoctors();
+  }, []);
 
   const specialitiesList = ["All", ...new Set(doctors.map((d) => d.speciality))];
 
@@ -127,7 +120,12 @@ const Doctors = () => {
       {/* Doctors Grid */}
       <section id="doctors" className="py-6 px-4 md:px-8">
         <div className="max-w-6xl mx-auto">
-          {filteredDoctors.length > 0 ? (
+          {loading ? (
+             <div className="py-20 text-center">
+                <div className="w-12 h-12 border-4 border-secondary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Loading Medical Staff...</p>
+             </div>
+          ) : filteredDoctors.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredDoctors.map((doctor) => (
                 <div

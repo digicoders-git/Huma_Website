@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   ChevronDown,
   Menu,
@@ -8,7 +9,6 @@ import {
   PlayCircle,
   Image as ImageIcon,
 } from "lucide-react";
-import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,6 +23,8 @@ const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const location = useLocation();
+  const [news, setNews] = useState([]);
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   const languages = [
     { code: "en", label: "EN", name: "English" },
@@ -70,6 +72,20 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 40);
     };
     window.addEventListener("scroll", handleScroll);
+
+    const fetchNews = async () => {
+      try {
+        const res = await fetch(`${API_URL}/announcement/all`);
+        const data = await res.json();
+        if (data.success) {
+          setNews(data.data.filter(n => n.isActive));
+        }
+      } catch (err) {
+        console.error("News fetch error:", err);
+      }
+    };
+    fetchNews();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -116,14 +132,23 @@ const Navbar = () => {
             <div className="flex whitespace-nowrap items-center h-full" style={{ animation: "tickerScroll 35s linear infinite" }}>
               {[...Array(2)].map((_, i) => (
                 <span key={i} className="inline-flex items-center gap-12 px-8 text-[11px] sm:text-[12px] font-medium tracking-wide text-white/95">
-                  <span className="flex items-center gap-2">🏥 <strong className="text-secondary font-bold">New OPD Block Inaugurated</strong> — Huma Neurology Center expands with a dedicated Neuro-Rehabilitation wing.</span>
-                  <span className="text-secondary opacity-50">✦</span>
-                  <span className="flex items-center gap-2">📢 <strong className="text-secondary font-bold">News:</strong> Free Epilepsy Awareness Camp — Every 2nd Saturday of the month.</span>
-                  <span className="text-secondary opacity-50">✦</span>
-                  <span className="flex items-center gap-2">💡 <strong className="text-secondary font-bold">Health Tip:</strong> High blood pressure is the #1 cause of stroke. Check your BP regularly.</span>
-                  <span className="text-secondary opacity-50">✦</span>
-                  <span className="flex items-center gap-2">🏥 <strong className="text-secondary font-bold">Hospital Update:</strong> Advanced Video-EEG Monitoring Lab now operational.</span>
-                  <span className="text-secondary opacity-50">✦</span>
+                  {news.length > 0 ? (
+                    news.map((n, idx) => (
+                      <React.Fragment key={n._id || idx}>
+                        <span className="flex items-center gap-2">
+                           <strong className="text-secondary font-bold">[{n.type || 'Notice'}]:</strong> {n.message}
+                        </span>
+                        <span className="text-secondary opacity-50">✦</span>
+                      </React.Fragment>
+                    ))
+                  ) : (
+                    <>
+                      <span className="flex items-center gap-2">🏥 <strong className="text-secondary font-bold">Welcome to Huma Neurology Center</strong> — Your Health, Our Priority.</span>
+                      <span className="text-secondary opacity-50">✦</span>
+                      <span className="flex items-center gap-2">📢 <strong className="text-secondary font-bold">News:</strong> Quality care with advanced technology.</span>
+                      <span className="text-secondary opacity-50">✦</span>
+                    </>
+                  )}
                 </span>
               ))}
             </div>

@@ -6,7 +6,7 @@ const stats = [
   {
     icon: <ShieldCheck size={36} />,
     title: "Experienced Neurologists",
-    desc: "Senior DM & MD Neurology specialists with 15+ years of clinical expertise.",
+    desc: "Senior DM & MD Neurology specialists with 25+ years of clinical expertise.",
   },
   {
     icon: <Globe size={36} />,

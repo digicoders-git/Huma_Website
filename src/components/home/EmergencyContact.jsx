@@ -97,8 +97,17 @@ const EmergencyContact = () => {
                 <div className="mt-2 space-y-1.5">
                   <div className="flex justify-between text-sm">
                     <span className="text-slate-500 font-medium">Mon – Sat</span>
-                    <span className="font-bold text-primary">9:00 AM – 6:00 PM</span>
+                    <span className="font-bold text-primary">12.00 5.00 ( Morning )</span> 
+                    {/* <span className="font-bold text-primary">8.30.10.00 Evening</span> */}
                   </div>
+
+                 <div className="flex justify-between text-sm">
+                    <span className="text-slate-500 font-medium">Mon – Sat</span>
+
+                    <span className="font-bold text-primary">8.30.10.00 ( Evening )</span>
+
+                 </div>
+
                   <div className="flex justify-between text-sm">
                     <span className="text-slate-500 font-medium">Sunday</span>
                     <span className="font-bold text-secondary">Emergency Only</span>

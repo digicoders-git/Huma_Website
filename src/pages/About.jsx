@@ -124,7 +124,7 @@ const About = () => {
                 <p className="text-slate-400 text-xs font-medium">MBBS, MD, DM Neurology</p>
                 <div className="flex items-center justify-center gap-2 mt-2 bg-primary/5 px-4 py-2 rounded-full border border-primary/10">
                   <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
-                  <span className="text-xs font-bold text-primary uppercase tracking-widest">15+ Years Experience</span>
+                  <span className="text-xs font-bold text-primary uppercase tracking-widest">25+ Years Experience</span>
                 </div>
               </div>
             </motion.div>
@@ -142,7 +142,7 @@ const About = () => {
                   <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">Founder & Chief Neurologist, Huma Neurology Center</p>
                 </div>
                 <div className="grid grid-cols-3 gap-3">
-                  {[{ value: '15+', label: 'Years' }, { value: '10K+', label: 'Patients' }, { value: '98%', label: 'Success' }].map((s, i) => (
+                  {[{ value: '25+', label: 'Years' }, { value: '10K+', label: 'Patients' }, { value: '98%', label: 'Success' }].map((s, i) => (
                     <div key={i} className="text-center bg-slate-50 border border-slate-100 rounded-xl px-4 py-3">
                       <p className="text-xl font-black text-primary">{s.value}</p>
                       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{s.label}</p>
@@ -346,7 +346,7 @@ const About = () => {
             {[
               {
                 label: "Years of Excellence",
-                value: "15+",
+                value: "25+",
                 icon: <BarChart3 size={32} />,
               },
               {

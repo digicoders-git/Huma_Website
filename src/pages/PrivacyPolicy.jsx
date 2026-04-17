@@ -276,7 +276,8 @@ const PrivacyPolicy = () => {
               </div>
             </div>
             <p className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.4em]">
-              Lucknow, Uttar Pradesh, India
+              538/643 Baba Ka Purwa Bandha Road Roop Pur Khadra Lucknow
+Landmark - Mansha Ram Mandir
             </p>
           </div>
         </div>
