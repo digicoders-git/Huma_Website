@@ -22,7 +22,7 @@ const FinalCTA = () => {
 
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
               <Link
-                to="/contact"
+                to="/appointment"
                 className="w-full lg:w-auto bg-secondary hover:bg-white hover:text-primary text-white font-bold py-4 px-10 rounded shadow-xl transition-all duration-300 uppercase tracking-[0.15em] text-[13px] flex items-center justify-center gap-2"
               >
                 <CheckCircle size={18} /> Book Appointment
