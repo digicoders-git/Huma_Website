@@ -106,9 +106,39 @@ const BlogDetail = () => {
               <h2 className="text-xl font-bold text-primary uppercase italic">Article Content</h2>
             </div>
             <div
-              className="blog-content-wrapper text-slate-700 space-y-3 [&_h3]:font-bold [&_h3]:text-primary [&_h3]:text-lg [&_h3]:mt-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-1 [&_li]:text-slate-600 [&_li]:text-sm [&_p]:leading-relaxed [&_strong]:text-primary"
+              className="blog-content-wrapper text-slate-700 
+              [&_h1]:text-3xl [&_h1]:font-black [&_h1]:text-primary [&_h1]:mb-6 [&_h1]:mt-8
+              [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-primary [&_h2]:mb-4 [&_h2]:mt-6
+              [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-primary [&_h3]:mb-3 [&_h3]:mt-5
+              [&_h4]:text-lg [&_h4]:font-bold [&_h4]:text-primary [&_h4]:mb-2 [&_h4]:mt-4
+              [&_p]:leading-relaxed [&_p]:mb-4 [&_p]:text-slate-600
+              [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ul]:space-y-2
+              [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_ol]:space-y-2
+              [&_li]:text-slate-600
+              [&_blockquote]:border-l-4 [&_blockquote]:border-secondary/30 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-6 [&_blockquote]:text-slate-500
+              [&_strong]:text-primary [&_strong]:font-bold
+              [&_a]:text-secondary [&_a]:underline [&_a]:underline-offset-2
+              [&_img]:rounded-2xl [&_img]:shadow-md [&_img]:my-6 [&_img]:max-w-full [&_img]:h-auto
+              [&_table]:w-full [&_table]:border-collapse [&_table]:my-6
+              [&_th]:bg-slate-50 [&_th]:p-3 [&_th]:border [&_th]:border-slate-200 [&_th]:text-left
+              [&_td]:p-3 [&_td]:border [&_td]:border-slate-200
+              [&_.ql-align-center]:text-center
+              [&_.ql-align-right]:text-right
+              [&_.ql-align-justify]:text-justify
+              [&_.ql-font-serif]:font-serif
+              [&_.ql-font-monospace]:font-mono
+              [&_.ql-size-small]:text-xs
+              [&_.ql-size-large]:text-lg
+              [&_.ql-size-huge]:text-2xl
+              [&_.ql-indent-1]:pl-8
+              [&_.ql-indent-2]:pl-16
+              [&_.ql-indent-3]:pl-24
+              "
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
+
+
+
           </div>
 
           <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 space-y-4">
