@@ -262,12 +262,12 @@ const PrivacyPolicy = () => {
               </p>
             </div>
             <div className="flex flex-col md:flex-row justify-center gap-6">
-              <div className="flex items-center gap-4 bg-white px-8 py-4 rounded-2xl border border-slate-100 shadow-sm">
+              {/* <div className="flex items-center gap-4 bg-white px-8 py-4 rounded-2xl border border-slate-100 shadow-sm">
                 <Mail size={18} className="text-secondary" />
                 <span className="text-sm font-bold text-primary">
                   shubhamsinghs24@outlook.com
                 </span>
-              </div>
+              </div> */}
               <div className="flex items-center gap-4 bg-white px-8 py-4 rounded-2xl border border-slate-100 shadow-sm">
                 <ShieldCheck size={18} className="text-secondary" />
                 <span className="text-sm font-bold text-primary">

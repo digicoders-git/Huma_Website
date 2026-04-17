@@ -222,7 +222,7 @@ const Emergency = () => {
             <h2 className="text-2xl md:text-3xl font-extrabold text-primary uppercase italic">Find Us — Huma Neurology Center</h2>
             <div className="space-y-3">
               {[
-                { icon: <MapPin size={16} />, text: "Lucknow, Uttar Pradesh, India — 226010" },
+                { icon: <MapPin size={16} />, text: "Lucknow, Uttar Pradesh, India — " },
                 { icon: <Clock size={16} />, text: "OPD: Mon – Sat, 9:00 AM – 6:00 PM" },
                 { icon: <Phone size={16} />, text: "Emergency: 24/7 — +91 7849893727" },
               ].map((item, i) => (

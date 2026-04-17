@@ -247,14 +247,14 @@ const TermsOfService = () => {
                 For any questions about these terms, reach out to us at:
               </p>
             </div>
-            <div className="flex justify-center">
+            {/* <div className="flex justify-center">
               <div className="flex items-center gap-4 bg-white px-10 py-5 rounded-2xl border border-slate-100 shadow-xl">
                 <Mail size={18} className="text-secondary" />
                 <span className="text-sm font-bold text-primary italic">
                   shubhamsinghs24@outlook.com
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

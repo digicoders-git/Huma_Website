@@ -124,7 +124,7 @@ const EmergencyContact = () => {
               <div>
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Our Location</p>
                 <h4 className="font-bold text-primary text-lg leading-tight">Find Us</h4>
-                <p className="text-slate-500 text-sm mt-1">Lucknow, Uttar Pradesh, India — 226010</p>
+                <p className="text-slate-500 text-sm mt-1">Lucknow, Uttar Pradesh, India — </p>
               </div>
               <span className="text-secondary font-bold text-xs uppercase tracking-widest flex items-center gap-1">
                 Get Directions →
